@@ -1,0 +1,11 @@
+---
+
+- name: packages
+  yum: name={{ item }} state=installed
+  with_items:
+   - zsh
+   - vim
+
+- name: copy rcfiles
+  copy: src=.zshrc dest=/root/.zshrc
+

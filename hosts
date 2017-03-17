@@ -1,3 +1,8 @@
-10.10.75.47 ansible_user=root 
+[ovirt]
 10.10.75.75 ansible_user=root
 10.10.75.76 ansible_user=root
+10.10.75.77 ansible_user=root
+
+
+[ucs]
+10.10.72.47 ansible_user=root

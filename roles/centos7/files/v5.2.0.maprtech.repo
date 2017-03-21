@@ -4,3 +4,10 @@ baseurl=http://package.mapr.com/releases/v5.2.0/redhat/
 enabled=1
 gpgcheck=0
 protect=1
+
+[maprecosystem]
+name=MapR Technologies
+baseurl=http://package.mapr.com/releases/MEP/MEP-2.0/redhat
+enabled=1
+gpgcheck=0
+protect=1

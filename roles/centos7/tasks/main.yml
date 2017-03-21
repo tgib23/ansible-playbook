@@ -15,8 +15,8 @@
     state: present
     key: http://package.mapr.com/releases/pub/maprgpg.key
 
-- name: copy rcfiles
-  copy: src=v5.2.0.maprtech.repo dest=/etc/yum.repos.d/maprtech.repo
+- name: copy repo file
+  copy: src=v{{ mapr_version}}.maprtech.repo dest=/etc/yum.repos.d/maprtech.repo
 
 - name: copy disks
   copy: src=disks dest=/tmp/disks
@@ -45,6 +45,7 @@
 
 - name: disksetup
   shell: /opt/mapr/server/disksetup -F /tmp/disks
+  when: diskadd == 'true'
 
 - name: run the service
   service: name={{ item }} state=started

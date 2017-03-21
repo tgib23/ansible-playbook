@@ -31,6 +31,7 @@
     - mapr-zk-internal
     - mapr-webserver
     - java-devel
+    - clustershell
 
 - name: add JAVA_HOME
   lineinfile:
@@ -39,6 +40,15 @@
     backrefs: yes
     line: 'export JAVA_HOME=/usr/lib/jvm/jre-1.8.0'
     state: present
+
+- name: copy clustershell group setting template
+  copy: src=groups dest=/etc/clustershell/groups
+
+- name: configure clustershell group
+  replace:
+    dest='/etc/clustershell/groups'
+    regexp='CLUSTERSHELLNODES'
+    replace='{{ clush_nodes }}'
 
 - name: configure.sh
   shell: /opt/mapr/server/configure.sh -C '{{ cldb_nodes }}' -Z '{{ zookeeper_nodes }}' -N '{{ cluster_name }}'

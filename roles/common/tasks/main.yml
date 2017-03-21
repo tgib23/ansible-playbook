@@ -9,3 +9,21 @@
 - name: copy rcfiles
   copy: src=.zshrc dest=/root/.zshrc
 
+- name: packages
+  yum: name={{ item }} state=installed
+  with_items:
+   - wget
+
+- name: mapr group
+  group:
+    name: mapr
+    state: present
+    gid: 5000
+
+- name: mapr user
+  user:
+    name: mapr
+    uid: 5000
+    group: mapr
+    password: '{{ mapruser_password }}'
+

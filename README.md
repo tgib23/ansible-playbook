@@ -30,16 +30,16 @@ This role installs mapr-core packages assuming the node is centos7.
 Parameters below is necessary.
 
 | Parameters | Explanation |
-|:-----------|------------:|
+|:-----------|:------------|
 | cldb_nodes | comma separated nodes list |
-| mapruser_password |  Encrypted password for mapr user |
+| mapruser_password |  Encrypted password for mapr user. Encrypted password for mapr user. Install passlib and execute ```python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.using(rounds=5000).hash(getpass.getpass())"``` will give you the encrypted passwd  |
 | zookeeper_nodes |   comma separated nodes list |
 | cluste_name |   cluster name |
 | clush_nodes |   space separated nodes list to setup clustershell |
 | diskadd |   When you run this role for the first time, disk should be added to the cluster, so "diskadd" should be "yes". When you run after that, disk should not be added anymore, so "diskadd" should be "no" |
 | mapr_version | mapr version to install |
 
-Encrypted password for mapr user. Install passlib and execute ```python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.using(rounds=5000).hash(getpass.getpass())"``` will give you the encrypted passwd 
+
 
 Also, roles/centos7/files/disks have to be specified following your env
 ```

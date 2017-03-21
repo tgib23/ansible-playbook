@@ -28,6 +28,7 @@ node2 ansible_user=root
 
 This role installs mapr-core packages assuming the node is centos7.
 Parameters below is necessary.
+
 | Parameters | Explanation |
 |:-----------|------------:|
 | cldb_nodes | comma separated nodes list |

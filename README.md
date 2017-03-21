@@ -32,7 +32,7 @@ Parameters below is necessary.
 | Parameters | Explanation |
 |:-----------|:------------|
 | cldb_nodes | comma separated nodes list |
-| mapruser_password |  Encrypted password for mapr user. Encrypted password for mapr user. Install passlib and execute ```python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.using(rounds=5000).hash(getpass.getpass())"``` will give you the encrypted passwd  |
+| mapruser_password |  Encrypted password for mapr user. Install passlib and execute ```python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.using(rounds=5000).hash(getpass.getpass())"``` will give you the encrypted passwd  |
 | zookeeper_nodes |   comma separated nodes list |
 | cluste_name |   cluster name |
 | clush_nodes |   space separated nodes list to setup clustershell |

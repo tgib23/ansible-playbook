@@ -1,4 +1,4 @@
-# ansible for linux dev
+# ansible for MapR cluster setup
 
 This playbook is for creating MapR cluster.
 I hope this will be another re-invention of mapr-installer.

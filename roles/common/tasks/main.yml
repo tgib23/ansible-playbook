@@ -5,6 +5,7 @@
   with_items:
    - zsh
    - vim
+   - lsof
 
 - name: copy rcfiles
   copy: src=.zshrc dest=/root/.zshrc

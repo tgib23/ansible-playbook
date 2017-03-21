@@ -9,7 +9,7 @@
    - MySQL-python
 
 - name: run the service
-  service: name={{ item }} state=started
+  service: name={{ item }} state=started enabled=yes
   with_items:
     - mariadb
 
@@ -20,7 +20,9 @@
     - 'localhost'
 
 - name: create mariadb database
-  mysql_db: name=hive state=present
+  mysql_db:
+    name=hive
+    state=present
 
 - name: copy hive-site.xml
   copy: src=hive-site.xml dest=/opt/mapr/hive/hive-1.2/conf/hive-site.xml owner=mapr

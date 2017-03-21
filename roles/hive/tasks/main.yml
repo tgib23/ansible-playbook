@@ -5,20 +5,6 @@
   with_items:
    - mapr-hive
 
-#- name: enable hive impersonation part1
-#  lineinfile:
-#    dest=/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/core-site.xml
-#    state=present
-#    regexp='<!-- hiveimpersonation'
-#    line=''
-#
-#- name: enable hive impersonation part2
-#  lineinfile:
-#    dest=/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/core-site.xml
-#    state=present
-#    regexp='hiveimpersonation-->'
-#    line=''
-
 - name: copy hive-site.xml
   copy: src=hive-site.xml dest=/opt/mapr/hive/hive-1.2/conf/hive-site.xml owner=mapr
 

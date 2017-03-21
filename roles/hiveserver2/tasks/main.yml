@@ -1,0 +1,33 @@
+---
+
+- name: packages
+  yum: name={{ item }} state=installed
+  with_items:
+   - mapr-hive
+   - mapr-hiveserver2
+
+- name: enable hive impersonation part1
+  lineinfile:
+    dest=/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/core-site.xml
+    state=present
+    regexp='<!-- hiveimpersonation'
+    line=''
+
+- name: enable hive impersonation part2
+  lineinfile:
+    dest=/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/core-site.xml
+    state=present
+    regexp='hiveimpersonation-->'
+    line=''
+
+- name: configure HIVEMETA
+  replace:
+    dest='/opt/mapr/hive/hive-1.2/conf/hive-site.xml'
+    regexp='HIVEMETA'
+    replace='{{ hivemeta }}'
+
+
+- name: restart warden
+  service: name={{ item }} state=restarted
+  with_items:
+    - mapr-warden

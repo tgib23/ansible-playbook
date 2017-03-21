@@ -47,6 +47,9 @@
   shell: /opt/mapr/server/disksetup -F /tmp/disks
   when: diskadd == 'true'
 
+- name: add core-site.xml
+  copy: src=core-site.xml dest=/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/core-site.xml owner=mapr
+
 - name: run the service
   service: name={{ item }} state=started
   with_items:

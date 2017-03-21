@@ -50,7 +50,7 @@ Also, roles/centos7/files/disks have to be specified following your env
 
 Then, you should be able to execute ansible with extra vars. See the sample below.
 ```
- ansible-playbook -i hosts site.yml --limit centos7 \
+$ ansible-playbook -i hosts site.yml --limit centos7 \
    --extra-vars '{ "clush_nodes":"node0 node1 node2", \
    "diskadd":"yes", "mapr_version":"5.2.0", "cldb_nodes":"node0,node1,node2", \
    "zookeeper_nodes":"node0:5181,node1:5181,node2:5181", "cluster_name":"sample", \
@@ -72,7 +72,11 @@ parameters below are necessary.
     * node to install hivemeta
 
 ```
- ansible-playbook -i hosts site.yml --limit hivemeta --extra-vars '{ "clush_nodes":"node0 node1 node2", "diskadd":"yes", "mapr_version":"5.2.0", "cldb_nodes":"node0,node1,node2", "zookeeper_nodes":"node0:5181,node1:5181,node2:5181", "cluster_name":"sample", "mapruser_password":"$6$0FsX6QWhxP5yHf0.$ceGG6Crjyjnwc9MHsgvPEakdNS.Q76VvDFb4k2l6KGNYjdGzFTG5yxq6bPUsBBuhpw/i.e50aeH1.RYJDGKaJ0", "hive_password":"hive", "hivemeta":"node2"}'
+$ ansible-playbook -i hosts site.yml --limit hivemeta \
+  --extra-vars '{ "clush_nodes":"node0 node1 node2", "diskadd":"yes", \
+  "mapr_version":"5.2.0", "cldb_nodes":"node0,node1,node2", \
+  "zookeeper_nodes":"node0:5181,node1:5181,node2:5181", "cluster_name":"sample", \
+  "mapruser_password":"ENCRYPTED_PASSWORD", "hive_password":"hive", "hivemeta":"node2"}'
 ```
 
 ## hiveserver2 role

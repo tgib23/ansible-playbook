@@ -30,13 +30,15 @@ This role installs mapr-core packages assuming the node is centos7.
 Parameters below is necessary.
 | Parameters | Explanation |
 |:-----------|------------:|
-| mapruser_password |  Encrypted password for mapr user. Install passlib and execute ```python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.using(rounds=5000).hash(getpass.getpass())"``` will give you the encrypted passwd     |
 | cldb_nodes | comma separated nodes list |
+| mapruser_password |  Encrypted password for mapr user |
 | zookeeper_nodes |   comma separated nodes list |
 | cluste_name |   cluster name |
 | clush_nodes |   space separated nodes list to setup clustershell |
 | diskadd |   When you run this role for the first time, disk should be added to the cluster, so "diskadd" should be "yes". When you run after that, disk should not be added anymore, so "diskadd" should be "no" |
 | mapr_version | mapr version to install |
+
+Encrypted password for mapr user. Install passlib and execute ```python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.using(rounds=5000).hash(getpass.getpass())"``` will give you the encrypted passwd 
 
 Also, roles/centos7/files/disks have to be specified following your env
 ```
@@ -47,7 +49,11 @@ Also, roles/centos7/files/disks have to be specified following your env
 
 Then, you should be able to execute ansible with extra vars. See the sample below.
 ```
- ansible-playbook -i hosts site.yml --limit centos7 --extra-vars '{ "clush_nodes":"node0 node1 node2", "diskadd":"yes", "mapr_version":"5.2.0", "cldb_nodes":"node0,node1,node2", "zookeeper_nodes":"node0:5181,node1:5181,node2:5181", "cluster_name":"sample", "mapruser_password":"$6$0FsX6QWhxP5yHf0.$ceGG6Crjyjnwc9MHsgvPEakdNS.Q76VvDFb4k2l6KGNYjdGzFTG5yxq6bPUsBBuhpw/i.e50aeH1.RYJDGKaJ0"}'
+ ansible-playbook -i hosts site.yml --limit centos7 \
+   --extra-vars '{ "clush_nodes":"node0 node1 node2", \
+   "diskadd":"yes", "mapr_version":"5.2.0", "cldb_nodes":"node0,node1,node2", \
+   "zookeeper_nodes":"node0:5181,node1:5181,node2:5181", "cluster_name":"sample", \
+   "mapruser_password":"ENCRYPTED_PASSWORD"}'
 ```
 
 you should be able to access MCS (ex. https://node0:8443/) now. Set the license.

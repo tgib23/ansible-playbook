@@ -60,8 +60,16 @@
     <value>true</value>
  </property>
  <property>
+  <name>hive.server2.support.dynamic.service.discovery</name>
+  <value>true</value>
+ </property>
+ <property>
   <name>hive.zookeeper.quorum</name>
-  <value>syamada-dist0:5181,syamada-dist1:5181,syamada-dist3:5181</value>
+  <value>ZOOKEEPER_NODES</value>
+ </property>
+ <property>
+  <name>hive.zookeeper.client.port</name>
+  <value>5181</value>
  </property>
  <property>
    <name>hive.support.concurrency</name>

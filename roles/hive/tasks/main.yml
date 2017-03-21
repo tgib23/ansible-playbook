@@ -4,23 +4,20 @@
   yum: name={{ item }} state=installed
   with_items:
    - mapr-hive
-   - mapr-hivemetastore
-   - mariadb-server
-   - MySQL-python
 
-- name: run the service
-  service: name={{ item }} state=started
-  with_items:
-    - mariadb
-
-- name: create hive user
-  mysql_user: name=hive password='{{ hive_password }}' priv=*.*:ALL state=present host={{item}}
-  with_items:
-    - '%'
-    - 'localhost'
-
-- name: create mariadb database
-  mysql_db: name=hive state=present
+#- name: enable hive impersonation part1
+#  lineinfile:
+#    dest=/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/core-site.xml
+#    state=present
+#    regexp='<!-- hiveimpersonation'
+#    line=''
+#
+#- name: enable hive impersonation part2
+#  lineinfile:
+#    dest=/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/core-site.xml
+#    state=present
+#    regexp='hiveimpersonation-->'
+#    line=''
 
 - name: copy hive-site.xml
   copy: src=hive-site.xml dest=/opt/mapr/hive/hive-1.2/conf/hive-site.xml owner=mapr
@@ -37,8 +34,3 @@
     regexp='HIVEMETA'
     replace='{{ hivemeta }}'
 
-
-- name: restart warden
-  service: name={{ item }} state=restarted
-  with_items:
-    - mapr-warden

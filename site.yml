@@ -16,6 +16,6 @@
   roles:
   - role: hiveserver2
 
-#- hosts: hive
-#  roles:
-#  - role: hive
+- hosts: hive
+  roles:
+  - role: hive

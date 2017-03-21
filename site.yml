@@ -3,3 +3,7 @@
 - hosts: all
   roles:
   - role: common
+
+- hosts: centos7
+  roles:
+  - role: centos7

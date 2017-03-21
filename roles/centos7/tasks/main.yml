@@ -1,0 +1,71 @@
+---
+
+- name: packages
+  yum: name={{ item }} state=installed
+  with_items:
+   - wget
+
+- name: download epel
+  get_url:
+    url: http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel//7/x86_64/e/epel-release-7-9.noarch.rpm
+    dest: /tmp
+
+- name: update epel
+  yum:
+    name: /tmp/epel-release-7-9.noarch.rpm
+    state: present
+
+- name: import rpm key
+  rpm_key:
+    state: present
+    key: http://package.mapr.com/releases/pub/maprgpg.key
+
+- name: mapr group
+  group:
+    name: mapr
+    state: present
+    gid: 5000
+
+- name: mapr user
+  user:
+    name: mapr
+    uid: 5000
+    group: mapr
+    password: '{{ mapruser_password }}'
+
+- name: copy rcfiles
+  copy: src=v5.2.0.maprtech.repo dest=/etc/yum.repos.d/maprtech.repo
+
+- name: copy disks
+  copy: src=disks dest=/tmp/disks
+
+- name: install mapr packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - mapr-cldb
+    - mapr-core
+    - mapr-fileserver
+    - mapr-zookeeper
+    - mapr-zk-internal
+    - mapr-webserver
+    - java-devel
+
+- name: add JAVA_HOME
+  lineinfile:
+    dest: '/opt/mapr/conf/env.sh'
+    regexp: '^#export JAVA_HOME='
+    backrefs: yes
+    line: 'export JAVA_HOME=/usr/lib/jvm/jre-1.8.0'
+    state: present
+
+- name: configure.sh
+  shell: /opt/mapr/server/configure.sh -C '{{ cldb_nodes }}' -Z '{{ zookeeper_nodes }}' -N '{{ cluster_name }}'
+
+- name: disksetup
+  shell: /opt/mapr/server/disksetup -F /tmp/disks
+
+- name: run the service
+  service: name={{ item }} state=started
+  with_items:
+    - mapr-zookeeper
+    - mapr-warden

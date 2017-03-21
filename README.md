@@ -73,7 +73,7 @@ parameters below are necessary.
 
 ```
 $ ansible-playbook -i hosts site.yml --limit hivemeta \
-  --extra-vars '{ "clush_nodes":"node0 node1 node2", "diskadd":"yes", \
+  --extra-vars '{ "clush_nodes":"node0 node1 node2", "diskadd":"no", \
   "mapr_version":"5.2.0", "cldb_nodes":"node0,node1,node2", \
   "zookeeper_nodes":"node0:5181,node1:5181,node2:5181", "cluster_name":"sample", \
   "mapruser_password":"ENCRYPTED_PASSWORD", "hive_password":"hive", "hivemeta":"node2"}'

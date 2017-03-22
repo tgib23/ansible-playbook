@@ -1,0 +1,5 @@
+---
+
+- name: packages
+  yum: name=mapr-zookeeper state=installed
+

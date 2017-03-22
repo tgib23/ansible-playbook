@@ -5,13 +5,23 @@
   with_items:
    - mapr-hive
    - mapr-hivemetastore
-   - mariadb-server
    - MySQL-python
 
+- name: packages
+  yum: name=mysql-server state=installed
+  when: db == 'mysqldb'
+
+- name: packages
+  yum: name=mariadb-server state=installed
+  when: db == 'mariadb'
+
+- name: run mysql service
+  service: name=mysqld state=started enabled=yes
+  when: db == 'mysqldb'
+
 - name: run mariadb service
-  service: name={{ item }} state=started enabled=yes
-  with_items:
-    - mariadb
+  service: name=mariadb state=started enabled=yes
+  when: db == 'mariadb'
 
 - name: create hive user
   mysql_user: name=hive password='{{ hive_password }}' priv=*.*:ALL state=present host={{item}}

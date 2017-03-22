@@ -6,14 +6,14 @@
    - zsh
    - vim
    - lsof
+   - wget
 
 - name: copy rcfiles
   copy: src=.zshrc dest=/root/.zshrc
 
-- name: packages
-  yum: name={{ item }} state=installed
-  with_items:
-   - wget
+- name: copy /etc/hosts
+  copy: src=hosts dest=/etc/hosts
+  when: use_hosts == 'yes'
 
 - name: mapr group
   group:

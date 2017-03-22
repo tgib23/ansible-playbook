@@ -6,7 +6,6 @@ I hope this will be another re-invention of mapr-installer.
 ## Preparation
 * install ansible-playbook
 * ssh login to each node by root user without password
-* modify /etc/hosts
 * modify 'hosts' file in the root directory. 
 ```
 [centos7]
@@ -23,6 +22,11 @@ node2 ansible_user=root
 [hive]
 node2 ansible_user=root
 ```
+
+## common role
+
+This role is applied to any nodes.
+If you use /etc/hosts to resolve IP-Hostname of your cluster, you should write those relations in roles/common/files/hosts, and then, use "use_hosts" parameter and say "yes".
 
 ## centos7 role
 

@@ -1,4 +1,4 @@
-[centos7]
+[core_centos7]
 10.10.75.75 ansible_user=root
 10.10.75.76 ansible_user=root
 10.10.75.77 ansible_user=root

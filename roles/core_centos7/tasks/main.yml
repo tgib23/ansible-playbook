@@ -18,9 +18,6 @@
 - name: copy repo file
   copy: src=v{{ mapr_version}}.maprtech.repo dest=/etc/yum.repos.d/maprtech.repo
 
-- name: copy disks
-  copy: src=disks dest=/tmp/disks
-
 - name: install mapr packages
   yum: name={{ item }} state=installed
   with_items:

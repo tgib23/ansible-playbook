@@ -4,9 +4,9 @@
   roles:
   - role: common
 
-- hosts: centos7
+- hosts: core_centos7
   roles:
-  - role: centos7
+  - role: core_centos7
 
 - hosts: zookeeper
   roles:
@@ -52,7 +52,7 @@
   roles:
   - role: rerun_zookeeper
 
-- hosts: centos7
+- hosts: core_centos7
   roles:
   - role: rerun_warden
 

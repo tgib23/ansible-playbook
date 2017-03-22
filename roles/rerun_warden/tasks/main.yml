@@ -1,5 +1,8 @@
 ---
 
+- name: copy disks
+  copy: src=disks dest=/tmp/disks
+
 - name: disksetup
   shell: /opt/mapr/server/disksetup -F /tmp/disks
   when: add_disk == 'yes'

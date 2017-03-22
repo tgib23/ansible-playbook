@@ -1,0 +1,5 @@
+---
+
+- name: re-run zookeeper
+  service: name=mapr-zookeeper state=restarted enabled=yes
+

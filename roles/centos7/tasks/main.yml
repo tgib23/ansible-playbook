@@ -24,10 +24,8 @@
 - name: install mapr packages
   yum: name={{ item }} state=installed
   with_items:
-    - mapr-cldb
     - mapr-core
     - mapr-fileserver
-    - mapr-zookeeper
     - mapr-zk-internal
     - java-devel
     - clustershell
@@ -49,18 +47,6 @@
     regexp='CLUSTERSHELLNODES'
     replace='{{ clush_nodes }}'
 
-- name: configure.sh
-  shell: /opt/mapr/server/configure.sh -C '{{ cldb_nodes }}' -Z '{{ zookeeper_nodes }}' -N '{{ cluster_name }}'
-
-- name: disksetup
-  shell: /opt/mapr/server/disksetup -F /tmp/disks
-  when: add_disk == 'yes'
-
 - name: add core-site.xml
   copy: src=core-site.xml dest=/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/core-site.xml owner=mapr
 
-- name: run the service
-  service: name={{ item }} state=started
-  with_items:
-    - mapr-zookeeper
-    - mapr-warden

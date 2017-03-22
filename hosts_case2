@@ -1,0 +1,25 @@
+[centos7]
+10.10.75.75 ansible_user=root
+10.10.75.77 ansible_user=root
+
+[zookeeper]
+10.10.75.76 ansible_user=root
+
+[cldb]
+10.10.75.77 ansible_user=root
+
+[webserver]
+10.10.75.75 ansible_user=root
+
+[nfsserver]
+
+[resourcemanager]
+
+[nodemanager]
+
+[hivemeta]
+
+[hiveserver2]
+
+[hive]
+

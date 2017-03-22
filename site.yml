@@ -8,10 +8,22 @@
   roles:
   - role: centos7
 
+- hosts: zookeeper
+  roles:
+  - role: zookeeper
+
+- hosts: cldb
+  roles:
+  - role: cldb
+
 - hosts: webserver
   roles:
   - role: webserver
 
+- hosts: nfsserver
+  roles:
+  - role: nfsserver
+ 
 - hosts: resourcemanager
   roles:
   - role: resourcemanager
@@ -31,3 +43,16 @@
 - hosts: hive
   roles:
   - role: hive
+
+- hosts: all
+  roles:
+  - role: config
+
+- hosts: zookeeper
+  roles:
+  - role: rerun_zookeeper
+
+- hosts: centos7
+  roles:
+  - role: rerun_warden
+

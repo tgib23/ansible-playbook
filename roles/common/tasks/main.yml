@@ -7,6 +7,12 @@
    - vim
    - lsof
    - wget
+   - ntp
+
+- name: run ntp service
+  service: name={{ item }} state=started enabled=yes
+  with_items:
+    - ntpd
 
 - name: copy rcfiles
   copy: src=.zshrc dest=/root/.zshrc

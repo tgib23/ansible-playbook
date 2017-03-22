@@ -32,8 +32,3 @@
     regexp='HIVEMETA'
     replace='{{ hivemeta }}'
 
-
-- name: restart warden
-  service: name={{ item }} state=restarted
-  with_items:
-    - mapr-warden

@@ -1,0 +1,8 @@
+---
+
+- name: disksetup
+  shell: /opt/mapr/server/disksetup -F /tmp/disks
+  when: add_disk == 'yes'
+
+- name: re-run warden
+  service: name=mapr-warden state=restarted enabled=yes

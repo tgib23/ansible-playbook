@@ -3,8 +3,20 @@
 10.10.75.76 ansible_user=root
 10.10.75.77 ansible_user=root
 
+[zookeeper]
+10.10.75.75 ansible_user=root
+10.10.75.76 ansible_user=root
+10.10.75.77 ansible_user=root
+
+[cldb]
+10.10.75.75 ansible_user=root
+10.10.75.76 ansible_user=root
+
 [webserver]
 10.10.75.75 ansible_user=root
+
+[nfsserver]
+10.10.75.76 ansible_user=root
 
 [resourcemanager]
 10.10.75.75 ansible_user=root
@@ -23,5 +35,3 @@
 [hive]
 10.10.75.75 ansible_user=root
 
-[ucs]
-10.10.72.47 ansible_user=root

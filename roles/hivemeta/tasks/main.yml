@@ -8,7 +8,7 @@
    - mariadb-server
    - MySQL-python
 
-- name: run the service
+- name: run mariadb service
   service: name={{ item }} state=started enabled=yes
   with_items:
     - mariadb
@@ -39,8 +39,3 @@
     regexp='HIVEMETA'
     replace='{{ hivemeta }}'
 
-
-- name: restart warden
-  service: name={{ item }} state=restarted
-  with_items:
-    - mapr-warden

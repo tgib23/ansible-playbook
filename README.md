@@ -40,7 +40,7 @@ Parameters below is necessary.
 | zookeeper_nodes |   comma separated nodes list |
 | cluste_name |   cluster name |
 | clush_nodes |   space separated nodes list to setup clustershell |
-| diskadd |   When you run this role for the first time, disk should be added to the cluster, so "diskadd" should be "yes". When you run after that, disk should not be added anymore, so "diskadd" should be "no" |
+| add_disk |   When you run this role for the first time, disk should be added to the cluster, so "add_disk" should be "yes". When you run after that, disk should not be added anymore, so "add_disk" should be "no" |
 | mapr_version | mapr version to install |
 
 
@@ -56,7 +56,7 @@ Then, you should be able to execute ansible with extra vars. See the sample belo
 ```
 $ ansible-playbook -i hosts site.yml --limit centos7 \
    --extra-vars '{ "clush_nodes":"node0 node1 node2", \
-   "diskadd":"yes", "mapr_version":"5.2.0", "cldb_nodes":"node0,node1,node2", \
+   "add_disk":"yes", "mapr_version":"5.2.0", "cldb_nodes":"node0,node1,node2", \
    "zookeeper_nodes":"node0:5181,node1:5181,node2:5181", "cluster_name":"sample", \
    "mapruser_password":"ENCRYPTED_PASSWORD"}'
 ```
@@ -77,7 +77,7 @@ parameters below are necessary.
 
 ```
 $ ansible-playbook -i hosts site.yml --limit hivemeta \
-  --extra-vars '{ "clush_nodes":"node0 node1 node2", "diskadd":"no", \
+  --extra-vars '{ "clush_nodes":"node0 node1 node2", "add_disk":"no", \
   "mapr_version":"5.2.0", "cldb_nodes":"node0,node1,node2", \
   "zookeeper_nodes":"node0:5181,node1:5181,node2:5181", "cluster_name":"sample", \
   "mapruser_password":"ENCRYPTED_PASSWORD", "hive_password":"hive", "hivemeta":"node2"}'

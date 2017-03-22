@@ -55,7 +55,7 @@
 
 - name: disksetup
   shell: /opt/mapr/server/disksetup -F /tmp/disks
-  when: diskadd == 'yes'
+  when: add_disk == 'yes'
 
 - name: add core-site.xml
   copy: src=core-site.xml dest=/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/core-site.xml owner=mapr

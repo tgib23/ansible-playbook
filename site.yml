@@ -8,6 +8,14 @@
   roles:
   - role: centos7
 
+- hosts: resourcemanager
+  roles:
+  - role: resourcemanager
+
+- hosts: nodemanager
+  roles:
+  - role: nodemanager
+
 - hosts: hivemeta
   roles:
   - role: hivemeta

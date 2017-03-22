@@ -8,6 +8,10 @@
   roles:
   - role: centos7
 
+- hosts: webserver
+  roles:
+  - role: webserver
+
 - hosts: resourcemanager
   roles:
   - role: resourcemanager

@@ -61,12 +61,14 @@ $ ansible-playbook -i hosts site.yml --limit centos7 \
    "mapruser_password":"ENCRYPTED_PASSWORD"}'
 ```
 
-you should be able to access MCS (ex. https://node0:8443/) now. Set the license.
+
+## webserver role
+
+This role adds the role of MCS to cluster node.
 
 ## resourcemanager & nodemanager role
 
-These roles just add the role of RM and NM to cluster nodes.
-Just edit hosts to decide which node to assign the role.
+These roles adds the role of RM and NM to cluster nodes.
 
 ## hivemeta role
 

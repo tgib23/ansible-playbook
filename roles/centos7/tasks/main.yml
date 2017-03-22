@@ -29,7 +29,6 @@
     - mapr-fileserver
     - mapr-zookeeper
     - mapr-zk-internal
-    - mapr-webserver
     - java-devel
     - clustershell
 

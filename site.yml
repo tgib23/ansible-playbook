@@ -8,6 +8,10 @@
   roles:
   - role: core_centos7
 
+- hosts: core_centos6
+  roles:
+  - role: core_centos6
+
 - hosts: zookeeper
   roles:
   - role: zookeeper
@@ -53,6 +57,10 @@
   - role: rerun_zookeeper
 
 - hosts: core_centos7
+  roles:
+  - role: rerun_warden
+
+- hosts: core_centos6
   roles:
   - role: rerun_warden
 

@@ -3,6 +3,11 @@
 This playbook is for creating MapR cluster.
 I hope this will be another re-invention of mapr-installer.
 
+## Requirement
+
+* This ansible playbook assumes each node has the same disk setup for MFS, which means that if one node uses /dev/sdb,/dev/sdc,/dev/sdd then, other nodes also use the same disk path for MFS
+* 
+
 ## Preparation
 * install ansible-playbook
 * ssh login to each node by root user without password
@@ -46,12 +51,6 @@ Parameters below is necessary.
 
 
 
-Also, roles/core_centos7/files/disks have to be specified following your env
-```
-/dev/sdb
-/dev/sdc
-/dev/sdd
-```
 
 Then, you should be able to execute ansible with extra vars. See the sample below.
 ```
@@ -75,12 +74,13 @@ These roles adds the role of RM and NM to cluster nodes.
 
 hivemeta role installs mysqldb/mariadb, hivemeta and setup hivemeta.
 parameters below are necessary.
-* hive_password
-    * This role assumes hivemeta and hiveserver uses user "hive" for mysqldb/mariadb. This parameter is for the password of this user.
-* zookeeper_nodes
-    * zookeeper nodes for dynamic service discovery
-* hivemeta
-    * node to install hivemeta
+
+| Parameters | Explanation |
+|:-----------|:------------|
+|hive_password | This role assumes hivemeta and hiveserver uses user "hive" for mysqldb/mariadb. This parameter is for the password of this user. |
+|zookeeper_nodes | zookeeper nodes for dynamic service discovery. csv style |
+| hivemeta | node to install hivemeta |
+| db | "mysqldb" or "mariadb". default db of centos6 is mysqldb and centos7 is mariadb |
 
 ```
 $ ansible-playbook -i hosts site.yml --limit hivemeta \
@@ -131,3 +131,11 @@ Parameters below have to be specified.
 | Parameters | Explanation |
 |:-----------|:------------|
 | add_disk |   When you run this role for the first time, disk should be added to the cluster, so "add_disk" should be "yes". When you run after that, disk should not be added anymore, so "add_disk" should be "no" |
+
+Also, roles/core_centos7/files/disks have to be specified following your env
+
+```
+/dev/sdb
+/dev/sdc
+/dev/sdd
+```

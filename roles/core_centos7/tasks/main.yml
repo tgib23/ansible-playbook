@@ -10,14 +10,6 @@
     name: /tmp/epel-release-7-9.noarch.rpm
     state: present
 
-- name: import rpm key
-  rpm_key:
-    state: present
-    key: http://package.mapr.com/releases/pub/maprgpg.key
-
-- name: copy repo file
-  copy: src=v{{ mapr_version}}.maprtech.repo dest=/etc/yum.repos.d/maprtech.repo
-
 - name: install mapr packages
   yum: name={{ item }} state=installed
   with_items:

@@ -32,6 +32,8 @@ Parameters below have to be specified.
 |:-----------|:------------|
 | mapruser_password |  Encrypted password for mapr user. Install passlib and execute ```python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.using(rounds=5000).hash(getpass.getpass())"``` will give you the encrypted passwd  |
 | use_hosts | If you use /etc/hosts to resolve IP-Hostname of your cluster, you should write those relations in roles/common/files/hosts, and then, use "use_hosts" parameter and say "yes". |
+| mapr_version | mapr version to install. Ex. '5.2.0' |
+| mep_version | mep version to install. Ex. '2.0' |
 
 ## core_centos7 role
 
@@ -41,7 +43,6 @@ Parameters below is necessary.
 | Parameters | Explanation |
 |:-----------|:------------|
 | clush_nodes |   space separated nodes list to setup clustershell |
-| mapr_version | mapr version to install |
 
 
 

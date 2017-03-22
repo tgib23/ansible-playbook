@@ -34,3 +34,22 @@
     group: mapr
     password: '{{ mapruser_password }}'
 
+- name: import rpm key
+  rpm_key:
+    state: present
+    key: http://package.mapr.com/releases/pub/maprgpg.key
+
+- name: copy repo file
+  copy: src=maprtech.repo dest=/etc/yum.repos.d/maprtech.repo
+
+- name: set mapr version
+  replace:
+    dest='/etc/yum.repos.d/maprtech.repo'
+    regexp='MAPR_VERSION'
+    replace='{{ mapr_version }}'
+
+- name: set MEP version
+  replace:
+    dest='/etc/yum.repos.d/maprtech.repo'
+    regexp='MEP_VERSION'
+    replace='{{ mep_version }}'

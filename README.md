@@ -63,6 +63,10 @@ $ ansible-playbook -i hosts site.yml --limit centos7 \
 
 you should be able to access MCS (ex. https://node0:8443/) now. Set the license.
 
+## resourcemanager & nodemanager role
+
+These roles just add the role of RM and NM to cluster nodes.
+Just edit hosts to decide which node to assign the role.
 
 ## hivemeta role
 

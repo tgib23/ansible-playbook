@@ -5,11 +5,14 @@ I hope this will be another re-invention of mapr-installer.
 
 ## Requirement
 
+* I confirmed it works for CentOS 6 and 7 with MapR 5.2.0
 * This ansible playbook assumes each node has the same disk setup for MFS, which means that if one node uses /dev/sdb,/dev/sdc,/dev/sdd then, other nodes also use the same disk path for MFS
-* 
 
 ## Preparation
 * install ansible-playbook
+* hostname has to be setup manually on cluster nodes
+    * If you are using CentOS 6, you should edit /etc/sysconfig/network
+	* If you are using CentOS 7, you should edit /etc/hostname
 * ssh login to each node by root user without password
 * modify 'hosts' file in the root directory. 
 ```
@@ -27,8 +30,10 @@ node2 ansible_user=root
 [hive]
 node2 ansible_user=root
 ```
+* edit roles/common/files/hosts, which will be copied to /etc/hosts of your cluster nodes, in case you use /etc/hosts to solve IP-Hostname.
 
-## common role
+## Role
+## common
 
 This role is applied to any nodes.
 Parameters below have to be specified.
@@ -40,7 +45,7 @@ Parameters below have to be specified.
 | mapr_version | mapr version to install. Ex. '5.2.0' |
 | mep_version | mep version to install. Ex. '2.0' |
 
-## core_centos7 role
+## core_centos7
 
 This role installs mapr-core packages assuming the node is centos7.
 Parameters below is necessary.
@@ -62,15 +67,15 @@ $ ansible-playbook -i hosts site.yml --limit core_centos7 \
 ```
 
 
-## webserver role
+## webserver
 
 This role adds the role of MCS to cluster node.
 
-## resourcemanager & nodemanager role
+## resourcemanager & nodemanager
 
 These roles adds the role of RM and NM to cluster nodes.
 
-## hivemeta role
+## hivemeta
 
 hivemeta role installs mysqldb/mariadb, hivemeta and setup hivemeta.
 parameters below are necessary.
@@ -90,7 +95,7 @@ $ ansible-playbook -i hosts site.yml --limit hivemeta \
   "mapruser_password":"ENCRYPTED_PASSWORD", "hive_password":"hive", "hivemeta":"node2"}'
 ```
 
-## hiveserver2 role
+## hiveserver2
 
 hiveserver2 role installs hiveserver2 and setup configuration.
 This role configures hiveserver to [enable impersonation](http://maprdocs.mapr.com/home/Hive/HiveUserImpersonation-Enable.html)
@@ -101,7 +106,7 @@ Parameters below have to be specified.
 |zookeeper_nodes | zookeeper nodes for dynamic service discovery. csv style |
 | hivemeta | node to install hivemeta |
 
-## hive role
+## hive
 
 hive role installs hive and setup configuration
 Parameters below have to be specified.
@@ -112,7 +117,7 @@ Parameters below have to be specified.
 | hivemeta | node to install hivemeta |
 
 
-## config role
+## config
 
 This role executes configure.sh on each node.
 Parameters below have to be specified.
@@ -123,7 +128,7 @@ Parameters below have to be specified.
 | zookeeper_nodes |   comma separated nodes list |
 | cluste_name |   cluster name |
 
-## rerun_warden role
+## rerun_warden
 
 This role executes disksetup and restart warden on each node.
 Parameters below have to be specified.

@@ -1,31 +1,31 @@
 [core_centos6]
-ovirt_cent6 ansible_user=root
+ovirt-cent6 ansible_user=root
 
 [zookeeper]
-ovirt_cent6 ansible_user=root
+ovirt-cent6 ansible_user=root
 
 [cldb]
-ovirt_cent6 ansible_user=root
+ovirt-cent6 ansible_user=root
 
 [webserver]
-ovirt_cent6 ansible_user=root
+ovirt-cent6 ansible_user=root
 
 [nfsserver]
-ovirt_cent6 ansible_user=root
+ovirt-cent6 ansible_user=root
 
 [resourcemanager]
-ovirt_cent6 ansible_user=root
+ovirt-cent6 ansible_user=root
 
 [nodemanager]
-ovirt_cent6 ansible_user=root
+ovirt-cent6 ansible_user=root
 
 [hivemeta]
-ovirt_cent6 ansible_user=root
+ovirt-cent6 ansible_user=root
 
 [hiveserver2]
-ovirt_cent6 ansible_user=root
+ovirt-cent6 ansible_user=root
 
 [hive]
-ovirt_cent6 ansible_user=root
+ovirt-cent6 ansible_user=root
 
 

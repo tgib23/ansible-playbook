@@ -20,6 +20,10 @@
   roles:
   - role: cldb
 
+- hosts: fileserver
+  roles:
+  - role: fileserver
+
 - hosts: webserver
   roles:
   - role: webserver

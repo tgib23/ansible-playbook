@@ -14,7 +14,6 @@
   yum: name={{ item }} state=installed
   with_items:
     - mapr-core
-    - mapr-fileserver
     - mapr-zk-internal
     - java-devel
     - clustershell

@@ -1,5 +1,13 @@
 ---
 
+# This command copy your public key in $HOME/.ssh/id_rsa.pub to remote nodes.
+# Uncomment if you want to do this
+#- name: Set authorized key for user root copying it from current user
+#  authorized_key:
+#    user: root
+#    state: present
+#    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+
 - name: packages
   yum: name={{ item }} state=installed
   with_items:

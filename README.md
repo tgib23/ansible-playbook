@@ -33,7 +33,7 @@ node2 ansible_user=root
 * edit roles/common/files/hosts, which will be copied to /etc/hosts of your cluster nodes, in case you use /etc/hosts to solve IP-Hostname.
 
 ## Role
-## common
+### common
 
 This role is applied to any nodes.
 Parameters below have to be specified.
@@ -45,7 +45,7 @@ Parameters below have to be specified.
 | mapr_version | mapr version to install. Ex. '5.2.0' |
 | mep_version | mep version to install. Ex. '2.0' |
 
-## core_centos7
+### core_centos7
 
 This role installs mapr-core packages assuming the node is centos7.
 Parameters below is necessary.
@@ -67,15 +67,15 @@ $ ansible-playbook -i hosts site.yml --limit core_centos7 \
 ```
 
 
-## webserver
+### webserver
 
 This role adds the role of MCS to cluster node.
 
-## resourcemanager & nodemanager
+### resourcemanager & nodemanager
 
 These roles adds the role of RM and NM to cluster nodes.
 
-## hivemeta
+### hivemeta
 
 hivemeta role installs mysqldb/mariadb, hivemeta and setup hivemeta.
 parameters below are necessary.
@@ -95,7 +95,7 @@ $ ansible-playbook -i hosts site.yml --limit hivemeta \
   "mapruser_password":"ENCRYPTED_PASSWORD", "hive_password":"hive", "hivemeta":"node2"}'
 ```
 
-## hiveserver2
+### hiveserver2
 
 hiveserver2 role installs hiveserver2 and setup configuration.
 This role configures hiveserver to [enable impersonation](http://maprdocs.mapr.com/home/Hive/HiveUserImpersonation-Enable.html)
@@ -106,7 +106,7 @@ Parameters below have to be specified.
 |zookeeper_nodes | zookeeper nodes for dynamic service discovery. csv style |
 | hivemeta | node to install hivemeta |
 
-## hive
+### hive
 
 hive role installs hive and setup configuration
 Parameters below have to be specified.
@@ -117,7 +117,7 @@ Parameters below have to be specified.
 | hivemeta | node to install hivemeta |
 
 
-## config
+### config
 
 This role executes configure.sh on each node.
 Parameters below have to be specified.
@@ -128,7 +128,7 @@ Parameters below have to be specified.
 | zookeeper_nodes |   comma separated nodes list |
 | cluste_name |   cluster name |
 
-## rerun_warden
+### rerun_warden
 
 This role executes disksetup and restart warden on each node.
 Parameters below have to be specified.
@@ -144,3 +144,26 @@ Also, roles/core_centos7/files/disks have to be specified following your env
 /dev/sdc
 /dev/sdd
 ```
+
+
+## Examples
+
+### case4
+
+```
+$ ansible-playbook -i hosts_case4 site.yml --extra-vars '{
+ "db":"mariadb",
+ "use_hosts":"yes",
+ "clush_nodes":"ovirt0 ovirt1 ovirt2",
+ "add_disk":"yes",
+ "mapr_version":"5.2.0",
+ "mep_version":"2.0",
+ "cldb_nodes":"ovirt0,ovirt1",
+ "zookeeper_nodes":"ovirt0:5181",
+  "cluster_name":"sample",
+"mapruser_password":"$6$0FsX6QWhxP5yHf0.$ceGG6Crjyjnwc9MHsgvPEakdNS.Q76VvDFb4k2l6KGNYjdGzFTG5yxq6bPUsBBuhpw/i.e50aeH1.RYJDGKaJ0",
+"hive_password":"hive",
+"hivemeta":"ovirt2"
+}'
+```
+

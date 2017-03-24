@@ -16,6 +16,27 @@
    - lsof
    - wget
    - ntp
+   - curl
+   - device-mapper
+   - iputils
+   - libsysfs
+   - lvm2
+   - nc
+   - nfs-utils
+   - nss
+   - ntp
+   - openssh-clients
+   - openssh-server
+   - openssl
+   - python-devel
+   - python-pycurl
+   - sdparm
+   - sshpass
+   - sudo
+   - syslinux
+   - sysstat
+   - wget
+   - which
 
 - name: run ntp service
   service: name={{ item }} state=started enabled=yes

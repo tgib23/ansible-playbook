@@ -1,37 +1,41 @@
 [core_centos7]
-10.10.75.75 ansible_user=root
-10.10.75.76 ansible_user=root
-10.10.75.77 ansible_user=root
+
+[core_centos6]
+cent61
+cent62
+cent63
 
 [zookeeper]
-10.10.75.75 ansible_user=root
-10.10.75.76 ansible_user=root
-10.10.75.77 ansible_user=root
+cent61
 
 [cldb]
-10.10.75.75 ansible_user=root
-10.10.75.76 ansible_user=root
+cent62
+
+[fileserver]
+cent61
+cent62
+cent63
 
 [webserver]
-10.10.75.75 ansible_user=root
+cent61
 
 [nfsserver]
-10.10.75.76 ansible_user=root
+cent61
 
 [resourcemanager]
-10.10.75.75 ansible_user=root
+cent62
 
 [nodemanager]
-10.10.75.75 ansible_user=root
-10.10.75.76 ansible_user=root
-10.10.75.77 ansible_user=root
+cent61
+cent62
+cent63
 
 [hivemeta]
-10.10.75.77 ansible_user=root
+cent63
 
 [hiveserver2]
-10.10.75.77 ansible_user=root
+cent63
 
 [hive]
-10.10.75.75 ansible_user=root
+cent61
 

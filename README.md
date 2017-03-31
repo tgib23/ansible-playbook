@@ -148,6 +148,31 @@ Also, roles/core_centos7/files/disks have to be specified following your env
 
 ## Examples
 
+### case1
+
+* install MapR 5.2.0 on centos6
+* single node for zookeeper, cldb, webserver, nfsserver, hivemeta, hiveserver node
+* hive uses mysqldb
+* fileserver and nodemanager are redundant
+* use hosts_case1
+
+```
+$ ansible-playbook -i hosts_case1 site.yml -u root -k --extra-vars '{
+  "db":"mysqldb",
+  "use_hosts":"yes",
+  "clush_nodes":"cent61 cent62 cent63",
+  "add_disk":"yes",
+  "mapr_version":"5.2.0",
+  "mep_version":"2.0",
+  "cldb_nodes":"cent62",
+  "zookeeper_nodes":"cent61:5181",
+  "cluster_name":"cent6",
+  "mapruser_password":"$6$0FsX6QWhxP5yHf0.$ceGG6Crjyjnwc9MHsgvPEakdNS.Q76VvDFb4k2l6KGNYjdGzFTG5yxq6bPUsBBuhpw/i.e50aeH1.RYJDGKaJ0",
+  "hivemeta":"cent63",
+  "hive_password":"hive"
+}'
+```
+
 ### case4
 
 ```

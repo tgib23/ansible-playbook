@@ -127,6 +127,8 @@ Parameters below have to be specified.
 | cldb_nodes | comma separated list of cldb nodes. Ex "node0,node1,node2" |
 | zookeeper_nodes |   comma separated nodes list |
 | cluste_name |   cluster name |
+| resource_manager |   resource manager|
+| historyserver |   historyserver |
 
 ### rerun_warden
 

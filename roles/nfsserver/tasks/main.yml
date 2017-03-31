@@ -1,5 +1,7 @@
 ---
 
-- name: packages
+- name: install nfs packages
   yum: name=mapr-nfs state=installed
 
+- name: copy fstab file
+  shell: cp /opt/mapr/conf/mapr_fstab.sample /opt/mapr/conf/mapr_fstab

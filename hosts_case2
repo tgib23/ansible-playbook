@@ -1,25 +1,50 @@
 [core_centos7]
-10.10.75.75 ansible_user=root
-10.10.75.77 ansible_user=root
+
+[core_centos6]
+cent61
+cent62
+cent63
 
 [zookeeper]
-10.10.75.76 ansible_user=root
+cent61
 
 [cldb]
-10.10.75.77 ansible_user=root
+cent62
+
+[fileserver]
+cent61
+cent62
+cent63
 
 [webserver]
-10.10.75.75 ansible_user=root
+cent61
 
 [nfsserver]
+cent61
 
 [resourcemanager]
+cent62
 
 [nodemanager]
+cent61
+cent62
+cent63
+
+[historyserver]
+cent63
 
 [hivemeta]
+cent63
 
 [hiveserver2]
+cent63
 
 [hive]
+cent61
+
+[spark]
+cent61
+
+[spark-historyserver]
+cent63
 

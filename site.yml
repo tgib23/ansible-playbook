@@ -40,6 +40,10 @@
   roles:
   - role: nodemanager
 
+- hosts: historyserver
+  roles:
+  - role: historyserver
+
 - hosts: hivemeta
   roles:
   - role: hivemeta
@@ -51,6 +55,14 @@
 - hosts: hive
   roles:
   - role: hive
+
+- hosts: spark
+  roles:
+  - role: spark
+
+- hosts: spark-historyserver
+  roles:
+  - role: spark-historyserver
 
 - hosts: all
   roles:
@@ -67,4 +79,8 @@
 - hosts: core_centos6
   roles:
   - role: rerun_warden
+
+- hosts: spark-historyserver
+  roles:
+  - role: create_apps_spark_dir
 

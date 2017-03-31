@@ -1,0 +1,8 @@
+---
+
+- name: make dir
+  shell: /usr/bin/hadoop fs -mkdir /apps/spark
+
+- name: change owner of spark dir
+  shell: /usr/bin/hadoop fs -chowner mapr:mapr /apps/spark
+

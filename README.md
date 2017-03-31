@@ -127,6 +127,8 @@ Parameters below have to be specified.
 | cldb_nodes | comma separated list of cldb nodes. Ex "node0,node1,node2" |
 | zookeeper_nodes |   comma separated nodes list |
 | cluste_name |   cluster name |
+| resource_manager |   resource manager|
+| historyserver |   historyserver |
 
 ### rerun_warden
 
@@ -151,7 +153,7 @@ Also, roles/core_centos7/files/disks have to be specified following your env
 ### case1
 
 * install MapR 5.2.0 on centos6
-* single node for zookeeper, cldb, webserver, nfsserver, hivemeta, hiveserver node
+* zookeeper, cldb, webserver, nfsserver, hivemeta, hiveserver are installed on (not the same) single node
 * hive uses mysqldb
 * fileserver and nodemanager are redundant
 * use hosts_case1
@@ -172,6 +174,33 @@ $ ansible-playbook -i hosts_case1 site.yml -u root -k --extra-vars '{
   "hive_password":"hive"
 }'
 ```
+
+### case2
+
+* install MapR 5.2.0 on centos6
+* zookeeper, cldb, webserver, nfsserver, hivemeta, hiveserver, historyserver, spark-historyserver are installed on (not the same) single node
+* hive uses mysqldb
+* fileserver and nodemanager are redundant
+* use hosts_case2
+
+```
+ansible-playbook -i hosts_case2 site.yml -u root -k --extra-vars '{
+ "db":"mysqldb",
+ "use_hosts":"yes",
+ "clush_nodes":"cent61 cent62 cent63",
+ "add_disk":"yes",
+ "mapr_version":"5.2.0",
+ "mep_version":"2.0",
+ "cldb_nodes":"cent62",
+ "zookeeper_nodes":"cent61:5181",
+ "cluster_name":"cent6",
+ "mapruser_password":"$6$0FsX6QWhxP5yHf0.$ceGG6Crjyjnwc9MHsgvPEakdNS.Q76VvDFb4k2l6KGNYjdGzFTG5yxq6bPUsBBuhpw/i.e50aeH1.RYJDGKaJ0",
+ "hivemeta":"cent63",
+ "hive_password":"hive",
+ "resource_manager":"cent62",
+ "historyserver":"cent63"}'
+```
+
 
 ### case4
 

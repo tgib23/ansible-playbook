@@ -3,3 +3,7 @@
 - name: configure.sh
   shell: /opt/mapr/server/configure.sh -C '{{ cldb_nodes }}' -Z '{{ zookeeper_nodes }}' -N '{{ cluster_name }}'
 
+- name: configure.sh with resource manager and history server
+  shell: /opt/mapr/server/configure.sh -C '{{ cldb_nodes }}' -Z '{{ zookeeper_nodes }}' -RM '{{ resource_manager }}' -HS '{{ historyserver }}' -N '{{ cluster_name }}'
+  when: resource_manager is defined and history_server is defined
+

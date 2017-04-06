@@ -64,6 +64,10 @@
   roles:
   - role: spark-historyserver
 
+- hosts: posix-client-basic
+  roles:
+  - role: posix-client-basic
+
 - hosts: all
   roles:
   - role: config
@@ -83,4 +87,8 @@
 - hosts: spark-historyserver
   roles:
   - role: create_apps_spark_dir
+
+- hosts: loopbacknfs
+  roles:
+  - role: loopbacknfs
 

@@ -1,47 +1,51 @@
-[core_centos7]
-cent71
-cent72
-cent73
+[core_centos6]
+ecent61
+ecent62
+ecent63
 
 [zookeeper]
-cent71
-cent72
-cent73
+ecent61
+ecent62
+ecent63
 
 [cldb]
-cent71
-cent72
-cent73
+ecent61
+ecent62
+ecent63
 
 [webserver]
-cent71
+ecent61
 
 [nfsserver]
-cent72
+ecent62
 
 [resourcemanager]
-cent73
+ecent63
 
 [nodemanager]
-cent71
-cent72
-cent73
+ecent61
+ecent62
+ecent63
 
 [historyserver]
-cent73
+ecent63
 
 [hivemeta]
-cent72
+ecent62
 
 [hiveserver2]
-cent72
+ecent62
 
 [hive]
-cent71
+ecent61
 
 [spark]
-cent71
+ecent61
 
 [spark-historyserver]
-cent73
+ecent63
 
+[loopbacknfs]
+ecent63
+
+[posix-client-basic]

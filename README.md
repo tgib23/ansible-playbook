@@ -221,3 +221,23 @@ $ ansible-playbook -i hosts_case4 site.yml --extra-vars '{
 }'
 ```
 
+### case5
+
+* Install MapR 5.2.0 community edition on Centos7
+* cldb, zookeeper is installed as master node
+
+```
+$ ansible-playbook -i hosts_case5 site.yml -u root -k --extra-vars '{
+ "db":"mariadb",
+ "use_hosts":"yes",
+ "clush_nodes":"cent71 cent72 cent73",
+ "add_disk":"yes",
+ "mapr_version":"5.2.0",
+ "mep_version":"2.0",
+ "cldb_nodes":"cent71",
+ "zookeeper_nodes":"cent71:5181",
+ "cluster_name":"cent7",
+ "mapruser_password":"$6$0FsX6QWhxP5yHf0.$ceGG6Crjyjnwc9MHsgvPEakdNS.Q76VvDFb4k2l6KGNYjdGzFTG5yxq6bPUsBBuhpw/i.e50aeH1.RYJDGKaJ0",
+}'
+```
+

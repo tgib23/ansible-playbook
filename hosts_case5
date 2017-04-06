@@ -1,47 +1,38 @@
 [core_centos7]
-cent71
-cent72
-cent73
+cent71 
+cent72 
+cent73 
+
+[core_centos6]
 
 [zookeeper]
-cent71
-cent72
-cent73
+cent71 
 
 [cldb]
 cent71
-cent72
-cent73
+
+[fileserver]
+cent71 
+cent72 
+cent73 
 
 [webserver]
-cent71
+cent71 
 
 [nfsserver]
-cent72
+cent71 
 
 [resourcemanager]
-cent73
 
 [nodemanager]
-cent71
-cent72
-cent73
-
-[historyserver]
-cent73
 
 [hivemeta]
-cent72
 
 [hiveserver2]
-cent72
 
 [hive]
-cent71
 
 [spark]
-cent71
 
 [spark-historyserver]
-cent73
 

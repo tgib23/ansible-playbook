@@ -7,6 +7,7 @@ I hope this will be another re-invention of mapr-installer.
 
 * I confirmed it works for CentOS 6 and 7 with MapR 5.2.0
 * This ansible playbook assumes each node has the same disk setup for MFS, which means that if one node uses /dev/sdb,/dev/sdc,/dev/sdd then, other nodes also use the same disk path for MFS
+* can not handle MAPR_SUBNETS yet
 
 ## Preparation
 * install ansible-playbook
@@ -201,6 +202,30 @@ ansible-playbook -i hosts_case2 site.yml -u root -k --extra-vars '{
  "historyserver":"cent63"}'
 ```
 
+### case3
+
+* install MapR 5.2.0 on centos6
+* HA for zookeeper and cldb
+* nfsserver on node2, and loopbacknfs on node3
+
+```
+$ ansible-playbook -i hosts_case3 site.yml -u root -k --extra-vars '{
+ "db":"mysqldb",
+ "use_hosts":"yes",
+ "clush_nodes":"ecent61 ecent62 ecent63",
+ "add_disk":"yes",
+ "mapr_version":"5.2.0",
+ "mep_version":"2.0",
+ "cldb_nodes":"ecent61,ecent62,ecent63",
+ "zookeeper_nodes":"ecent61:5181,ecent62:5181,ecent63:5181",
+ "cluster_name":"ecent6",
+ "mapruser_password":"$6$0FsX6QWhxP5yHf0.$ceGG6Crjyjnwc9MHsgvPEakdNS.Q76VvDFb4k2l6KGNYjdGzFTG5yxq6bPUsBBuhpw/i.e50aeH1.RYJDGKaJ0",
+ "hivemeta":"ecent62",
+ "hive_password":"hive",
+ "resource_manager":"ecent63",
+ "historyserver":"ecent63"
+}'
+```
 
 ### case4
 

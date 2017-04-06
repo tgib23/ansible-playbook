@@ -1,0 +1,16 @@
+---
+
+- name: packages
+  yum: name=mapr-loopbacknfs state=installed
+
+- name: copy mapr_fstab
+  copy: src=mapr_fstab dest=/usr/local/mapr-loopbacknfs/conf/mapr_fstab
+
+- name: copy mapr-clusters.conf
+  shell: cp /opt/mapr/conf/mapr-clusters.conf /usr/local/mapr-loopbacknfs/conf/mapr-clusters.conf
+
+- name: restart loopback
+  service: name={{ item }} state=restarted enabled=yes
+  with_items:
+    - rpcbind
+    - mapr-loopbacknfs

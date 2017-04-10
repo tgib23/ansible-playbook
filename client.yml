@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  roles:
+  - role: common
+
+- hosts: posix-client-basic
+  roles:
+  - role: posix-client-basic
+

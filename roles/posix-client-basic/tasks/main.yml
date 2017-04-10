@@ -3,3 +3,8 @@
 - name: packages
   yum: name=mapr-posix-client-basic state=installed
 
+- name: configure.sh
+  shell: /opt/mapr/server/configure.sh -C '{{ cldb_nodes }}' -Z '{{ zookeeper_nodes }}' -N '{{ cluster_name }}' -c
+
+- name: run posix client service
+  service: name=mapr-posix-client-basic state=started enabled=yes

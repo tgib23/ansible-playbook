@@ -266,3 +266,18 @@ $ ansible-playbook -i hosts_case5 site.yml -u root -k --extra-vars '{
 }'
 ```
 
+### POSIX client case
+
+* install posix fuse basic client
+
+```
+ansible-playbook -i hosts_client_case_1 client.yml -u root -k --extra-vars '{
+ "use_hosts":"yes",
+ "mapr_version":"5.2.0",
+ "mep_version":"2.0",
+ "cldb_nodes":"syamada-dist2,syamada-dist0",
+ "zookeeper_nodes":"syamada-dist0:5181,syamada-dist2:5181,syamada-dist3:5181",
+ "cluster_name":"syamada52",
+ "mapruser_password":"$6$0FsX6QWhxP5yHf0.$ceGG6Crjyjnwc9MHsgvPEakdNS.Q76VvDFb4k2l6KGNYjdGzFTG5yxq6bPUsBBuhpw/i.e50aeH1.RYJDGKaJ0",
+}'
+```

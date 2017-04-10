@@ -64,10 +64,6 @@
   roles:
   - role: spark-historyserver
 
-- hosts: posix-client-basic
-  roles:
-  - role: posix-client-basic
-
 - hosts: all
   roles:
   - role: config

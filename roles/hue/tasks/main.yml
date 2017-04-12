@@ -1,0 +1,20 @@
+---
+
+- name: packages
+  yum: name=mapr-hue state=installed
+
+- name: copy hue.ini
+  copy: src=hue.ini dest=/opt/mapr/hue/hue-3.12.0/desktop/conf/hue.ini owner=mapr group=mapr
+
+- name: set WEBHDFS HOST
+  replace:
+    dest='/opt/mapr/hue/hue-3.12.0/desktop/conf/hue.ini'
+    regexp='WEBHDFS_HOST'
+    replace='{{ httpfs_host }}'
+
+- name: set RESOURCEMANAGER HOST
+  replace:
+    dest='/opt/mapr/hue/hue-3.12.0/desktop/conf/hue.ini'
+    regexp='RESOURCEMANAGER_HOST'
+    replace='{{ resource_manager }}'
+

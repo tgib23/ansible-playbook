@@ -7,33 +7,6 @@
    - mapr-hivemetastore
    - MySQL-python
 
-- name: packages
-  yum: name=mysql-server state=installed
-  when: db == 'mysqldb'
-
-- name: packages
-  yum: name=mariadb-server state=installed
-  when: db == 'mariadb'
-
-- name: run mysql service
-  service: name=mysqld state=started enabled=yes
-  when: db == 'mysqldb'
-
-- name: run mariadb service
-  service: name=mariadb state=started enabled=yes
-  when: db == 'mariadb'
-
-- name: create hive user
-  mysql_user: name=hive password='{{ hive_password }}' priv=*.*:ALL state=present host={{item}}
-  with_items:
-    - '%'
-    - 'localhost'
-
-- name: create mariadb database
-  mysql_db:
-    name=hive
-    state=present
-
 - name: copy hive-site.xml
   copy: src=hive-site.xml dest=/opt/mapr/hive/hive-1.2/conf/hive-site.xml owner=mapr
 

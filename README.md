@@ -117,6 +117,16 @@ Parameters below have to be specified.
 |zookeeper_nodes | zookeeper nodes for dynamic service discovery. csv style |
 | hivemeta | node to install hivemeta |
 
+### hue
+
+assumption
+* configured to run httpfs, resourcemanager.
+* use MEP 3.0 (hue 3.12.0)
+
+| Parameters | Explanation |
+|:-----------|:------------|
+| httpfs_server | httpfs_server host |
+| resource_manager | resource_manager host |
 
 ### config
 

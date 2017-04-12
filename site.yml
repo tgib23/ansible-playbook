@@ -46,6 +46,7 @@
 
 - hosts: hivemeta
   roles:
+  - role: mysql
   - role: hivemeta
 
 - hosts: hiveserver2
@@ -63,6 +64,15 @@
 - hosts: spark-historyserver
   roles:
   - role: spark-historyserver
+
+- hosts: httpfs
+  roles:
+  - role: httpfs
+
+- hosts: hue
+  roles:
+  - role: mysql
+  - role: hue
 
 - hosts: all
   roles:

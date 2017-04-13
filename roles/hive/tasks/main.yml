@@ -6,17 +6,17 @@
    - mapr-hive
 
 - name: copy hive-site.xml
-  copy: src=hive-site.xml dest=/opt/mapr/hive/hive-1.2/conf/hive-site.xml owner=mapr
+  copy: src=hive-site.xml dest=/opt/mapr/hive/hive-2.1/conf/hive-site.xml owner=mapr
 
 - name: configure ZOOKEEPER_NODES
   replace:
-    dest='/opt/mapr/hive/hive-1.2/conf/hive-site.xml'
+    dest='/opt/mapr/hive/hive-2.1/conf/hive-site.xml'
     regexp='ZOOKEEPER_NODES'
     replace='{{ zookeeper_nodes }}'
 
 - name: configure HIVEMETA
   replace:
-    dest='/opt/mapr/hive/hive-1.2/conf/hive-site.xml'
+    dest='/opt/mapr/hive/hive-2.1/conf/hive-site.xml'
     regexp='HIVEMETA'
     replace='{{ hivemeta }}'
 

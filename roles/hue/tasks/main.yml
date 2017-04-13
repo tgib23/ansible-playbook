@@ -18,3 +18,9 @@
     regexp='RESOURCEMANAGER_HOST'
     replace='{{ resource_manager }}'
 
+- name: set HIVESERVER HOST
+  replace:
+    dest='/opt/mapr/hue/hue-3.12.0/desktop/conf/hue.ini'
+    regexp='HIVESERVER_HOST'
+    replace='{{ hiveserver }}'
+

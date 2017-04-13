@@ -120,13 +120,16 @@ Parameters below have to be specified.
 ### hue
 
 assumption
-* configured to run httpfs, resourcemanager.
+* configured to run httpfs, resourcemanager, hive
 * use MEP 3.0 (hue 3.12.0)
+* assuming hive 2.1
+
 
 | Parameters | Explanation |
 |:-----------|:------------|
 | httpfs_server | httpfs_server host |
 | resource_manager | resource_manager host |
+| hiveserver | hiveserver host |
 
 ### config
 

@@ -24,6 +24,7 @@
   with_items:
     - '%'
     - 'localhost'
+    - '{{ hivemeta }}'
   when: hive_password is defined
 
 - name: create hue user
@@ -31,6 +32,7 @@
   with_items:
     - '%'
     - 'localhost'
+    - '{{ hivemeta }}'
   when: hue_password is defined
   
 - name: create hive database

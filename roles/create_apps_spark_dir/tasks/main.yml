@@ -1,5 +1,9 @@
 ---
 
+- name: sleep 60 sec to wait for cldb to boot (heulistic)
+  pause:
+    minutes: 1
+
 - name: make dir
   shell: if /usr/bin/hadoop fs -ls /apps | grep -sq spark ; then echo apps dir already created ; else /usr/bin/hadoop fs -mkdir /apps/spark ; fi
 

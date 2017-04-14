@@ -71,7 +71,6 @@
 
 - hosts: hue
   roles:
-  - role: mysql
   - role: hue
 
 - hosts: all

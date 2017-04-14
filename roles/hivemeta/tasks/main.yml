@@ -1,5 +1,10 @@
 ---
 
+- name: set hive_version from mep
+  set_fact:
+    hive_version : 2.1
+  when: mep_version == '3.0'
+
 - name: packages
   yum: name={{ item }} state=installed
   with_items:
@@ -7,45 +12,23 @@
    - mapr-hivemetastore
    - MySQL-python
 
-- name: packages
-  yum: name=mysql-server state=installed
-  when: db == 'mysqldb'
-
-- name: packages
-  yum: name=mariadb-server state=installed
-  when: db == 'mariadb'
-
-- name: run mysql service
-  service: name=mysqld state=started enabled=yes
-  when: db == 'mysqldb'
-
-- name: run mariadb service
-  service: name=mariadb state=started enabled=yes
-  when: db == 'mariadb'
-
-- name: create hive user
-  mysql_user: name=hive password='{{ hive_password }}' priv=*.*:ALL state=present host={{item}}
-  with_items:
-    - '%'
-    - 'localhost'
-
-- name: create mariadb database
-  mysql_db:
-    name=hive
-    state=present
-
 - name: copy hive-site.xml
-  copy: src=hive-site.xml dest=/opt/mapr/hive/hive-1.2/conf/hive-site.xml owner=mapr
+  copy: src=hive-site.xml dest=/opt/mapr/hive/hive-{{ hive_version }}/conf/hive-site.xml owner=mapr
+
+- name: create hive tables
+  shell: mysql -u hive -phive hive < /opt/mapr/hive/hive-{{ hive_version }}/scripts/metastore/upgrade/mysql/hive-schema-{{ hive_version }}.0.mysql.sql
+  args:
+    chdir:  /opt/mapr/hive/hive-{{ hive_version }}/scripts/metastore/upgrade/mysql/
 
 - name: configure ZOOKEEPER_NODES
   replace:
-    dest='/opt/mapr/hive/hive-1.2/conf/hive-site.xml'
+    dest='/opt/mapr/hive/hive-{{ hive_version }}/conf/hive-site.xml'
     regexp='ZOOKEEPER_NODES'
     replace='{{ zookeeper_nodes }}'
 
 - name: configure HIVEMETA
   replace:
-    dest='/opt/mapr/hive/hive-1.2/conf/hive-site.xml'
+    dest='/opt/mapr/hive/hive-{{ hive_version }}/conf/hive-site.xml'
     regexp='HIVEMETA'
     replace='{{ hivemeta }}'
 

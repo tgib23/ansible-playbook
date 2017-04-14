@@ -117,6 +117,20 @@ Parameters below have to be specified.
 |zookeeper_nodes | zookeeper nodes for dynamic service discovery. csv style |
 | hivemeta | node to install hivemeta |
 
+### hue
+
+assumption
+* configured to run httpfs, resourcemanager, hive
+* assuming hive 2.1
+
+
+| Parameters | Explanation |
+|:-----------|:------------|
+| mep_versin | 2.0 (hue 3.10.0) or 3.0 (hue 3.12.0) |
+| httpfs | httpfs_server host |
+| resource_manager | resource_manager host |
+| hiveserver | hiveserver host |
+| historyserver |   historyserver host |
 
 ### config
 
@@ -264,6 +278,30 @@ $ ansible-playbook -i hosts_case5 site.yml -u root -k --extra-vars '{
  "cluster_name":"cent7",
  "mapruser_password":"$6$0FsX6QWhxP5yHf0.$ceGG6Crjyjnwc9MHsgvPEakdNS.Q76VvDFb4k2l6KGNYjdGzFTG5yxq6bPUsBBuhpw/i.e50aeH1.RYJDGKaJ0",
 }'
+```
+
+### case6
+* Install MapR 5.2.0 community edition on Centos7
+* Install hue and httpfs
+
+```
+ansible-playbook -i hosts_case6 site.yml -u root -k --extra-vars '{
+  "db":"mysqldb",
+  "use_hosts":"no",
+  "clush_nodes":"ecent61 ecent62 ecent63",
+  "add_disk":"yes",
+  "mapr_version":"5.2.1",
+  "mep_version":"3.0",
+  "cldb_nodes":"ecent62,ecent63",
+  "zookeeper_nodes":"ecent61:5181,ecent62:5181,ecent63:5181",
+  "cluster_name":"ecent6",
+  "mapruser_password":"$6$0FsX6QWhxP5yHf0.$ceGG6Crjyjnwc9MHsgvPEakdNS.Q76VvDFb4k2l6KGNYjdGzFTG5yxq6bPUsBBuhpw/i.e50aeH1.RYJDGKaJ0",
+  "hivemeta":"ecent62",
+  "hive_password":"hive",
+  "resource_manager":"ecent63",
+  "httpfs":"ecent61",
+  "hiveserver":"ecent62",
+  "historyserver":"ecent63"}'
 ```
 
 ### POSIX client case

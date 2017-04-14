@@ -1,0 +1,40 @@
+---
+
+- name: set hue_version from mep
+  set_fact:
+    hue_version : 3.12.0
+  when: mep_version == '3.0'
+
+- name: packages
+  yum: name=mapr-hue state=installed
+
+- name: change directory owner
+  shell: chown -R mapr:mapr /opt/mapr/hue
+
+- name: copy hue.ini
+  copy: src=hue.ini dest=/opt/mapr/hue/hue-{{ hue_version }}/desktop/conf/hue.ini owner=mapr group=mapr
+
+- name: set WEBHDFS HOST
+  replace:
+    dest='/opt/mapr/hue/hue-{{ hue_version }}/desktop/conf/hue.ini'
+    regexp='WEBHDFS_HOST'
+    replace='{{ httpfs }}'
+
+- name: set RESOURCEMANAGER HOST
+  replace:
+    dest='/opt/mapr/hue/hue-{{ hue_version }}/desktop/conf/hue.ini'
+    regexp='RESOURCEMANAGER_HOST'
+    replace='{{ resource_manager }}'
+
+- name: set HIVESERVER HOST
+  replace:
+    dest='/opt/mapr/hue/hue-{{ hue_version }}/desktop/conf/hue.ini'
+    regexp='HIVESERVER_HOST'
+    replace='{{ hiveserver }}'
+
+- name: set HISTORYSERVER HOST
+  replace:
+    dest='/opt/mapr/hue/hue-{{ hue_version }}/desktop/conf/hue.ini'
+    regexp='HISTORYSERVER_HOST'
+    replace='{{ historyserver }}'
+

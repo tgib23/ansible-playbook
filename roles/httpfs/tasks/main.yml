@@ -1,0 +1,11 @@
+---
+
+- name: packages
+  yum: name=mapr-httpfs state=installed
+
+- name: packages
+  shell: chown -R mapr:mapr /opt/mapr/httpfs
+
+- name: copy core-site.xml
+  copy: src=core-site.xml dest=/opt/mapr/httpfs/httpfs-1.0/etc/hadoop/core-site.xml owner=mapr group=root
+

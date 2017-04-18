@@ -73,6 +73,26 @@
   roles:
   - role: hue
 
+- hosts: elasticsearch
+  roles:
+  - role: elasticsearch
+
+- hosts: opentsdb
+  roles:
+  - role: opentsdb
+
+- hosts: kibana
+  roles:
+  - role: kibana
+
+- hosts: grafana
+  roles:
+  - role: grafana
+
+- hosts: fluentd
+  roles:
+  - role: fluentd
+
 - hosts: all
   roles:
   - role: config

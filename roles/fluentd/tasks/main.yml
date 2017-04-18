@@ -1,0 +1,8 @@
+---
+
+- name: packages
+  yum: name={{ item }} state=installed
+  with_items:
+   - mapr-fluentd
+   - mapr-collectd
+

@@ -7,3 +7,7 @@
   shell: /opt/mapr/server/configure.sh -C '{{ cldb_nodes }}' -Z '{{ zookeeper_nodes }}' -RM '{{ resource_manager }}' -HS '{{ historyserver }}' -N '{{ cluster_name }}'
   when: resource_manager is defined and historyserver is defined
 
+- name: configure.sh with resource manager, history server, and spyglass
+  shell: /opt/mapr/server/configure.sh -C '{{ cldb_nodes }}' -Z '{{ zookeeper_nodes }}' -RM '{{ resource_manager }}' -HS '{{ historyserver }}' -N '{{ cluster_name }}' -ES '{{ elastic_search }}' -OT '{{ opentsdb }}'
+  when: resource_manager is defined and historyserver is defined and elastic_search is defined and opentsdb is defined
+

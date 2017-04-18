@@ -18,7 +18,6 @@
 
 <configuration>
 
-<!-- hiveimpersonation
   <property>
     <name>hadoop.proxyuser.mapr.hosts</name>
     <value>*</value>
@@ -27,7 +26,6 @@
     <name>hadoop.proxyuser.mapr.groups</name>
     <value>*</value>
   </property>
-hiveimpersonation-->
 
 <!-- hbaseimpersonation
   <property>

@@ -11,20 +11,6 @@
    - mapr-hive
    - mapr-hiveserver2
 
-- name: enable hive impersonation part1
-  lineinfile:
-    dest=/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/core-site.xml
-    state=present
-    regexp='<!-- hiveimpersonation'
-    line=''
-
-- name: enable hive impersonation part2
-  lineinfile:
-    dest=/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/core-site.xml
-    state=present
-    regexp='hiveimpersonation-->'
-    line=''
-
 - name: configure ZOOKEEPER_NODES
   replace:
     dest='/opt/mapr/hive/hive-{{ hive_version }}/conf/hive-site.xml'

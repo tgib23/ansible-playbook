@@ -89,9 +89,10 @@
   roles:
   - role: grafana
 
-- hosts: fluentd
+- hosts: spyglass-data-collector
   roles:
   - role: fluentd
+  - role: collectd
 
 - hosts: all
   roles:

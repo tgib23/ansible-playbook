@@ -304,6 +304,35 @@ ansible-playbook -i hosts_case6 site.yml -u root -k --extra-vars '{
   "historyserver":"ecent63"}'
 ```
 
+### case 7
+
+* Install MapR 5.2.1 with MEP 3.0
+* deploy with 5 nodes cluster
+* use spyglass
+
+```
+ansible-playbook -i hosts_case7 site.yml -u root -k --extra-vars '{
+  "db":"mysqldb",
+  "use_hosts":"yes",
+  "clush_nodes":"cent61 cent62 cent63 cent64 cent65",
+  "add_disk":"yes",
+  "mapr_version":"5.2.1",
+  "mep_version":"3.0",
+  "cldb_nodes":"cent62,cent63",
+  "zookeeper_nodes":"cent61:5181,cent62:5181,cent63:5181",
+  "cluster_name":"cent6",
+  "mapruser_password":"$6$0FsX6QWhxP5yHf0.$ceGG6Crjyjnwc9MHsgvPEakdNS.Q76VvDFb4k2l6KGNYjdGzFTG5yxq6bPUsBBuhpw/i.e50aeH1.RYJDGKaJ0",
+  "hivemeta":"cent62",
+  "hive_password":"hive",
+  "resource_manager":"cent63",
+  "httpfs":"cent63",
+  "hiveserver":"cent62",
+  "historyserver":"cent63",
+  "elastic_search":"cent64,cent65",
+  "opentsdb":"cent64"
+}'
+```
+
 ### POSIX client case
 
 * install posix fuse basic client

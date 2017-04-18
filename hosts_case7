@@ -79,7 +79,7 @@ cent65
 [grafana]
 cent64
 
-[fluentd]
+[spyglass-data-collector]
 cent61
 cent62
 cent63

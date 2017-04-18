@@ -94,6 +94,10 @@
   - role: fluentd
   - role: collectd
 
+- hosts: kafka-rest
+  roles:
+  - role: kafka-rest
+
 - hosts: all
   roles:
   - role: config

@@ -43,3 +43,19 @@
 - name: add core-site.xml
   copy: src=core-site.xml dest=/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/core-site.xml owner=mapr
 
+- name: proxy dir for impersonation
+  file:
+    path: /opt/mapr/conf/proxy
+    state: directory
+    mode: 0755
+
+- name: touch files for impersonation
+  file:
+    path: /opt/mapr/conf/proxy/{{ item }}
+    owner: mapr
+    group: mapr
+  with_items:
+      - mapr
+      - root
+      - mark
+      - sharon

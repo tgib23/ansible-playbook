@@ -50,18 +50,27 @@
   copy: src=hosts dest=/etc/hosts
   when: use_hosts == 'yes'
 
-- name: mapr group
+- name: create mapr, dev, mkt group
   group:
-    name: mapr
+    name: "{{ item.name }}"
     state: present
-    gid: 5000
+    gid: "{{ item.gid }}"
+  with_items:
+    - { name: 'mapr', gid: '5000' }
+    - { name: 'mkt',  gid: '6000' }
+    - { name: 'dev',  gid: '7000' }
 
-- name: mapr user
+- name: add mapr, mark, sharon user
   user:
-    name: mapr
-    uid: 5000
-    group: mapr
-    password: '{{ mapruser_password }}'
+    name:     "{{ item.name }}"
+    uid:      "{{ item.uid }}"
+    group:    "{{ item.group }}"
+    password: "{{ item.password }}"
+  with_items:
+    - { name: 'mapr',     uid: '5000', group: 'mapr', password: '$6$0FsX6QWhxP5yHf0.$ceGG6Crjyjnwc9MHsgvPEakdNS.Q76VvDFb4k2l6KGNYjdGzFTG5yxq6bPUsBBuhpw/i.e50aeH1.RYJDGKaJ0' }
+    - { name: 'mark',     uid: '700',  group: 'dev',  password: '$6$zfbXJCZmmJXzhoFf$1dx6kN5dg1luO4lFpAwCHl1thuznwtTOlMvkC72EqL.ux67DOtWjCU79MAzMjWtnJta9m8kwqtSryMfN56F1U1' }
+    - { name: 'user01',   uid: '701',  group: 'dev',  password: '$6$EeFZrsT6n1OJcuWB$479VWcEIf.uPX4tMPGIdHfuujyvvQ7nxm9TJwcCSu5YavXHS3y.WlJqmku1GHeqM8eA8oNktimbT.zpcNnm7v/' }
+    - { name: 'sharon',   uid: '600',  group: 'mkt',  password: '$6$toCIj6aS9K73k3vn$RrrYN6zchyzgCu1t6lFH1qSKCl6s81bANLsiv4jAiZlDMymsaewaXkV7/2n/KA92vuSmYuHLCig0q40MGTSx11' }
 
 - name: import rpm key
   rpm_key:

@@ -1,0 +1,29 @@
+---
+
+- name: set drill version from mep
+  set_fact:
+    drill_version : 1.10.0
+  when: mep_version == '3.0'
+
+- name: packages
+  yum: name=mapr-drill-yarn state=installed
+
+- name: create site dir
+  file:
+    path: /opt/mapr/drill/site
+    state: directory
+    owner: mapr
+    group: mapr
+
+- name: copy conf file from drill dir to site dir
+  shell: /opt/mapr/drill/drill-{{ drill_version }}/conf/{{ item }} /opt/mapr/drill/site
+  with_items:
+    - distrib-env.sh
+    - drill-env.sh
+    - drill-on-yarn.conf
+    - drill-override.conf
+
+- name: change owner of conf and sh files
+  shell: chown mapr:mapr /opt/mapr/drill/site/*
+
+

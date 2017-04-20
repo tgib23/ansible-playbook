@@ -41,3 +41,5 @@
 [spyglass-data-collector]
 
 [kafka-rest]
+
+[drill-yarn]

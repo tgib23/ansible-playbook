@@ -132,6 +132,31 @@ assumption
 | hiveserver | hiveserver host |
 | historyserver |   historyserver host |
 
+### drill-yarn
+
+Install drill on yarn.
+Configurations for eachstorage is necessary after installing.
+
+```
+$ /opt/mapr/drill/drill-1.10.0/bin/drill-on-yarn.sh --site /opt/mapr/drill/site start 
+pplication ID: application_1492660206907_0003
+Application State: RUNNING
+Host: cent64/10.10.75.117
+Queue: root.mapr
+User: mapr
+Start Time: 2017-04-20 03:31:08
+Application Name: Drill-on-YARN
+Tracking URL: http://cent63:8088/proxy/application_1492660206907_0003/
+AM State: LIVE
+Target Drillbit Count: 1
+Live Drillbit Count: 1
+Unmanaged Drillbit Count: 0
+Blacklisted Node Count: 1
+Free Node Count: 3
+For more information, visit: http://10.10.75.117:8048/
+```
+Access Drillbit Application Master above.
+
 ### config
 
 This role executes configure.sh on each node.

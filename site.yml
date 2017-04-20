@@ -122,3 +122,6 @@
   roles:
   - role: loopbacknfs
 
+- hosts: drill-yarn
+  roles:
+  - role: drill-yarn

@@ -15,8 +15,8 @@
 - name: copy hive-site.xml
   copy: src=hive-site.xml dest=/opt/mapr/hive/hive-{{ hive_version }}/conf/hive-site.xml owner=mapr
 
-- name: create hive tables
-  shell: mysql -u hive -phive hive < /opt/mapr/hive/hive-{{ hive_version }}/scripts/metastore/upgrade/mysql/hive-schema-{{ hive_version }}.0.mysql.sql
+- name: create hive tables if it is not created yet
+  shell: if [ `mysql -u hive -phive -h{{ hivemeta }} -e 'use hive; show tables' | wc -l` -ge 10 ] ; then echo "table already created" ; else mysql -u hive -phive hive < /opt/mapr/hive/hive-{{ hive_version }}/scripts/metastore/upgrade/mysql/hive-schema-{{ hive_version }}.0.mysql.sql ; fi
   args:
     chdir:  /opt/mapr/hive/hive-{{ hive_version }}/scripts/metastore/upgrade/mysql/
 

@@ -132,6 +132,15 @@ assumption
 | hiveserver | hiveserver host |
 | historyserver |   historyserver host |
 
+### spark
+
+In case using Spark on Yarn, just use \[spark\] and \[spark-historyserver\].
+In case using Spark Standalone, use \[spark-master\], \[spark\] for spark slave, and \[spark-historyserver\].
+
+| Parameters | Explanation |
+|:-----------|:------------|
+| mep_versin | 2.0 (Spark 1.6.1) or 3.0 (Spark 2.1.0) |
+
 ### drill-yarn
 
 Install drill on yarn.

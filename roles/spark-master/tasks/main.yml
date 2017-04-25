@@ -1,0 +1,23 @@
+---
+
+- name: set spark_version from mep
+  set_fact:
+    spark_version : 2.1.0
+  when: mep_version == '3.0'
+
+- name: packages
+  yum: name=mapr-spark-master state=installed
+
+- name: make .ssh dir
+  file:
+    path: /home/mapr/.ssh
+    state: directory
+    mode: 0755
+    owner: mapr
+    group: mapr
+
+- name: copy private key
+  copy: src=maprid_rsa dest=/home/mapr/.ssh/id_rsa owner=mapr mode=0600
+
+- name: copy slave file
+  copy: src=slaves dest=/opt/mapr/spark/spark-{{ spark_version}}/conf/

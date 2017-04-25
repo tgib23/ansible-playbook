@@ -61,6 +61,11 @@
   roles:
   - role: spark
 
+- hosts: spark-master
+  roles:
+  - role: spark
+  - role: spark-master
+
 - hosts: spark-historyserver
   roles:
   - role: spark-historyserver

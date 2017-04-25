@@ -22,6 +22,14 @@
 
 [hive]
 
+[hbase-master]
+
+[hbase-regionserver]
+
+[hbasethrift]
+
+[hbase-rest]
+
 [spark]
 
 [spark-master]

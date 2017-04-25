@@ -57,6 +57,22 @@
   roles:
   - role: hive
 
+- hosts: hbase-master
+  roles:
+  - role: hbase-master
+
+- hosts: hbase-regionserver
+  roles:
+  - role: hbase-regionserver
+
+- hosts: hbasethrift
+  roles:
+  - role: hbasethrift
+
+- hosts: hbase-rest
+  roles:
+  - role: hbase-rest
+
 - hosts: spark
   roles:
   - role: spark

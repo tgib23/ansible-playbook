@@ -3,3 +3,14 @@
 - name: packages
   yum: name=mapr-spark state=installed
 
+- name: make .ssh dir
+  file:
+    path: /home/mapr/.ssh
+    state: directory
+    mode: 0755
+    owner: mapr
+    group: mapr
+
+- name: copy public key
+  copy: src=maprid_rsa.pub dest=/home/mapr/.ssh/authorized_keys owner=mapr mode=0600
+

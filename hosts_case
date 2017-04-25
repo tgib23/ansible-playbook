@@ -24,6 +24,8 @@
 
 [spark]
 
+[spark-master]
+
 [spark-historyserver]
 
 [loopbacknfs]

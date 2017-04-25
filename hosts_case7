@@ -51,6 +51,19 @@ cent62
 [hive]
 cent61
 
+[hbase-master]
+cent61
+
+[hbase-regionserver]
+cent64
+cent65
+
+[hbasethrift]
+cent64
+
+[hbase-rest]
+cent65
+
 [spark]
 cent61
 

@@ -166,6 +166,13 @@ For more information, visit: http://10.10.75.117:8048/
 ```
 Access Drillbit Application Master above.
 
+### impala
+
+| Parameters | Explanation |
+|:-----------|:------------|
+| impala_statestore | impala state store host |
+| impala_catalog | impala catalog host |
+
 ### config
 
 This role executes configure.sh on each node.

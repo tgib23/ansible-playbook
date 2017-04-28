@@ -70,6 +70,18 @@ cent61
 [spark-historyserver]
 cent63
 
+[impala]
+cent65
+
+[impala-server]
+cent61
+
+[impala-statestore]
+cent62
+
+[impala-catalog]
+cent64
+
 [httpfs]
 cent63
 

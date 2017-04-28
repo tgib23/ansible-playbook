@@ -36,6 +36,14 @@
 
 [spark-historyserver]
 
+[impala]
+
+[impala-server]
+
+[impala-statestore]
+
+[impala-catalog]
+
 [loopbacknfs]
 
 [posix-client-basic]

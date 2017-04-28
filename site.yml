@@ -86,6 +86,26 @@
   roles:
   - role: spark-historyserver
 
+- hosts: impala
+  roles:
+  - role: impala
+
+- hosts: impala-server
+  roles:
+  - role: impala
+  - role: impala-server
+
+- hosts: impala-statestore
+  roles:
+  - role: impala
+  - role: impala-statestore
+
+- hosts: impala-catalog
+  roles:
+  - role: hive
+  - role: impala
+  - role: impala-catalog
+
 - hosts: httpfs
   roles:
   - role: httpfs

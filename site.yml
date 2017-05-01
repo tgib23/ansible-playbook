@@ -92,11 +92,13 @@
 
 - hosts: impala-server
   roles:
+  - role: hive
   - role: impala
   - role: impala-server
 
 - hosts: impala-statestore
   roles:
+  - role: hive
   - role: impala
   - role: impala-statestore
 

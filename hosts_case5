@@ -27,10 +27,13 @@ cent71
 [nodemanager]
 
 [hivemeta]
+cent72
 
 [hiveserver2]
+cent73
 
 [hive]
+cent73
 
 [spark]
 

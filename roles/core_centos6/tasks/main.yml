@@ -54,6 +54,7 @@
     path: /opt/mapr/conf/proxy/{{ item }}
     owner: mapr
     group: mapr
+    state: touch
   with_items:
       - mapr
       - root

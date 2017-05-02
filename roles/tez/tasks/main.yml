@@ -1,0 +1,45 @@
+---
+
+- name: set hive_version from mep
+  set_fact:
+    hive_version : 2.1
+  when: mep_version == '3.0'
+
+- name: packages
+  yum: name=mapr-tez state=installed
+  when: mep_version == '3.0'
+
+- name: make tez dir
+  shell: if /usr/bin/hadoop fs -ls /apps | grep -sq tez; then echo apps dir already created ; else /usr/bin/hadoop fs -mkdir /apps/tez; fi
+  run_once: true
+
+- name: make tez-0.8 dir
+  shell: if /usr/bin/hadoop fs -ls /apps/tez | grep -sq tez-0.8; then echo apps dir already created ; else /usr/bin/hadoop fs -put /opt/mapr/tez/tez-0.8 /apps/tez; fi
+  run_once: true
+
+- name: chmod tez dir
+  shell: hadoop fs -chmod -R 755 /apps/tez
+
+- name: insert additional settings in hadoop-env.sh
+  blockinfile:
+    dest: /opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/hadoop-env.sh
+    block: |
+      export TEZ_CONF_DIR=/opt/mapr/tez/tez-0.8/conf
+      export TEZ_JARS=/opt/mapr/tez/tez-0.8/*:/opt/mapr/tez/tez-0.8/lib/*
+      export HADOOP_CLASSPATH=$TEZ_CONF_DIR:$TEZ_JARS:$HADOOP_CLASSPATH
+
+- name: copy hive-site.xml
+  copy: src=hive-site.xml dest=/opt/mapr/hive/hive-2.1/conf/hive-site.xml owner=mapr
+
+- name: configure ZOOKEEPER_NODES
+  replace:
+    dest='/opt/mapr/hive/hive-{{ hive_version }}/conf/hive-site.xml'
+    regexp='ZOOKEEPER_NODES'
+    replace='{{ zookeeper_nodes }}'
+
+- name: configure HIVEMETA
+  replace:
+    dest='/opt/mapr/hive/hive-{{ hive_version }}/conf/hive-site.xml'
+    regexp='HIVEMETA'
+    replace='{{ hivemeta }}'
+

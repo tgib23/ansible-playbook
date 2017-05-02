@@ -175,3 +175,7 @@
 - hosts: drill-yarn
   roles:
   - role: drill-yarn
+
+- hosts: tez
+  roles:
+  - role: tez

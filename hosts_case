@@ -63,3 +63,5 @@
 [kafka-rest]
 
 [drill-yarn]
+
+[tez]

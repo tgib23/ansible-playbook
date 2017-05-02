@@ -44,6 +44,8 @@
 
 [impala-catalog]
 
+[drill]
+
 [loopbacknfs]
 
 [posix-client-basic]

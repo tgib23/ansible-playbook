@@ -108,6 +108,10 @@
   - role: impala
   - role: impala-catalog
 
+- hosts: drill
+  roles:
+  - role: drill
+
 - hosts: httpfs
   roles:
   - role: httpfs
@@ -148,14 +152,17 @@
 - hosts: zookeeper
   roles:
   - role: rerun_zookeeper
+  serial: 1
 
 - hosts: core_centos7
   roles:
   - role: rerun_warden
+  serial: 1
 
 - hosts: core_centos6
   roles:
   - role: rerun_warden
+  serial: 1
 
 - hosts: spark-historyserver
   roles:

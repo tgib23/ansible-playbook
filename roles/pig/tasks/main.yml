@@ -1,0 +1,5 @@
+---
+
+- name: install pig package
+  yum: name=mapr-pig state=installed
+

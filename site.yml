@@ -57,6 +57,10 @@
   roles:
   - role: hive
 
+- hosts: pig
+  roles:
+  - role: pig
+
 - hosts: hbase-master
   roles:
   - role: hbase-master

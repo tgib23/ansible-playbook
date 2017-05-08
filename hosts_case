@@ -22,6 +22,8 @@
 
 [hive]
 
+[pig]
+
 [hbase-master]
 
 [hbase-regionserver]

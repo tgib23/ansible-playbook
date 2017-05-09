@@ -1,0 +1,5 @@
+---
+
+- name: install sqoop2 server package
+  yum: name=mapr-sqoop2-server state=installed
+

@@ -1,0 +1,5 @@
+---
+
+- name: install sqoop2 client package
+  yum: name=mapr-sqoop2-client state=installed
+

@@ -1,0 +1,5 @@
+---
+
+- name: install sqoop package
+  yum: name=mapr-sqoop state=installed
+

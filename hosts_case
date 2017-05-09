@@ -48,6 +48,12 @@
 
 [drill]
 
+[sqoop]
+
+[sqoop2-server]
+
+[sqoop2-client]
+
 [loopbacknfs]
 
 [posix-client-basic]

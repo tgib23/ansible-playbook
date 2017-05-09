@@ -116,6 +116,18 @@
   roles:
   - role: drill
 
+- hosts: sqoop
+  roles:
+  - role: sqoop
+
+- hosts: sqoop2-server
+  roles:
+  - role: sqoop2-server
+
+- hosts: sqoop2-client
+  roles:
+  - role: sqoop2-client
+
 - hosts: httpfs
   roles:
   - role: httpfs

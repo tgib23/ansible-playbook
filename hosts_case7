@@ -96,6 +96,15 @@ cent61
 cent64
 cent65
 
+[sqoop]
+cent61
+
+[sqoop2-server]
+cent62
+
+[sqoop2-client]
+cent61
+
 [loopbacknfs]
 cent61
 

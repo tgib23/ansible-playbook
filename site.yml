@@ -161,6 +161,10 @@
   roles:
   - role: kafka-rest
 
+- hosts: oozie
+  roles:
+  - role: oozie
+
 - hosts: all
   roles:
   - role: config

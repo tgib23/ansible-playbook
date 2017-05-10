@@ -1,0 +1,13 @@
+---
+
+- name: install oozie package
+  yum: name=mapr-oozie state=installed
+
+- name: copy oozie-site.xml for impersonation
+  copy: src=oozie-site.xml dest=/opt/mapr/oozie/oozie-4.3.0/conf/oozie-site.xml owner=mapr group=mapr
+
+- name: copy ext-js
+  copy: src=ext-2.2.zip dest=/opt/mapr/oozie/oozie-4.3.0/libext/ owner=mapr group=mapr
+
+- name: execute oozie-setup.sh
+  shell: /opt/mapr/oozie/oozie-4.3.0/bin/oozie-setup.sh -hadoop 2.7.0 /opt/mapr/hadoop/hadoop-2.7.0

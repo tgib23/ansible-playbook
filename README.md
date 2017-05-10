@@ -45,6 +45,7 @@ Parameters below have to be specified.
 | use_hosts | If you use /etc/hosts to resolve IP-Hostname of your cluster, you should write those relations in roles/common/files/hosts, and then, use "use_hosts" parameter and say "yes". |
 | mapr_version | mapr version to install. Ex. '5.2.0' |
 | mep_version | mep version to install. Ex. '2.0' |
+| oozie | oozie server host |
 
 ### core_centos7
 
@@ -165,6 +166,10 @@ Free Node Count: 3
 For more information, visit: http://10.10.75.117:8048/
 ```
 Access Drillbit Application Master above.
+
+### oozie
+
+install oozie and setup oozie server
 
 ### impala
 

@@ -78,6 +78,7 @@ export MVN_HOME=~/development/apache-maven-3.2.2
 MVN_PATH=$MVN_HOME/bin
 export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME
+export OOZIE_URL='http://OOZIE_NODE:11000/oozie'
 #export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.8"`
 path=( ~/.rbenv/bin ~/.rbenv/shims $HOME/{bin,sbin} /usr/local/{bin,sbin} /{bin,sbin} /usr/{bin,sbin} $JAVA_HOME/bin $MVN_PATH /Applications/play-2.2.0/ /Applications/activator-1.3.2/ $GOROOT/bin $GOPATH/bin $HOME/.packer ~/google-cloud-sdk/bin )
 export PATH

@@ -91,3 +91,11 @@
     dest='/etc/yum.repos.d/maprtech.repo'
     regexp='MEP_VERSION'
     replace='{{ mep_version }}'
+
+- name: set oozie node
+  replace:
+    dest='/root/.zshrc'
+    regexp='OOZIE_NODE'
+    replace='{{ oozie }}'
+  when: oozie is defined
+

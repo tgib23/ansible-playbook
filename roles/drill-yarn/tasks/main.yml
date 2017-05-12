@@ -16,7 +16,7 @@
     group: mapr
 
 - name: copy conf file from drill dir to site dir
-  shell: /opt/mapr/drill/drill-{{ drill_version }}/conf/{{ item }} /opt/mapr/drill/site
+  shell: cp /opt/mapr/drill/drill-{{ drill_version }}/conf/{{ item }} /opt/mapr/drill/site
   with_items:
     - distrib-env.sh
     - drill-env.sh

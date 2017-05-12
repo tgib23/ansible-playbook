@@ -3,99 +3,67 @@
 This playbook is for creating MapR cluster.
 I hope this will be another re-invention of mapr-installer.
 
+## Motivation
+
+[mapr-installer](http://maprdocs.mapr.com/home/MapRInstaller.html) is a great tool to build up a MapR cluster, but there are some restrictions such as
+* no multiple master roles for HA
+* no client setup
+
+It is possible to build multiple master roles and client with this ansible script.
+
+## Verification
+
+| OS | MapR Version | MEP |
+|:---|:------------|:-----|
+|CentOS 6, CentOS 7 | 5.2.0, 5.2.1 | 3.0 |
+
 ## Requirement
 
-* I confirmed it works for CentOS 6 and 7 with MapR 5.2.0
-* This ansible playbook assumes each node has the same disk setup for MFS, which means that if one node uses /dev/sdb,/dev/sdc,/dev/sdd then, other nodes also use the same disk path for MFS
-* can not handle MAPR_SUBNETS yet
+* Each node has the same disk setup for MFS
+    * if one node uses /dev/sdb,/dev/sdc,/dev/sdd then, other nodes also use the same disk path for MFS
+* Look at the [issues](https://github.com/tgib23/ansible-playbook-mapr/issues)
 
 ## Preparation
-* install ansible-playbook
-* hostname has to be setup manually on cluster nodes
+
+### Setup for Cluster Nodes and ansible Client Node
+
+* install ansible-playbook on ansible client node
+* hostname has to be setup manually on cluster nodes (or setup DNS) for solving hostname
     * If you are using CentOS 6, you should edit /etc/sysconfig/network
-	* If you are using CentOS 7, you should edit /etc/hostname
-* ssh login to each node by root user without password
-* modify 'hosts' file in the root directory. 
-```
-[core_centos7]
-node0 ansible_user=root
-node1 ansible_user=root
-node2 ansible_user=root
+    * If you are using CentOS 7, you should edit /etc/hostname
+* enable ssh login to each node by root user without password from ansible client node
 
-[hivemeta]
-node2 ansible_user=root
+### Configuration for ansible
+* prepare 'hosts' file in the root directory using hosts_case or example files
+* edit roles/common/files/hosts, which will be copied to /etc/hosts of your cluster nodes, in case you use /etc/hosts to solve IP-Hostname of other nodes
+* edit roles/rerun_warden/files/disks to specify the disk path for MFS on cluster nodes. Only this file is used in every cluster node, so that the disk path of each node has to be identical.
 
-[hiveserver2]
-node2 ansible_user=root
+## parameter
 
-[hive]
-node2 ansible_user=root
-```
-* edit roles/common/files/hosts, which will be copied to /etc/hosts of your cluster nodes, in case you use /etc/hosts to solve IP-Hostname.
-
-## Role
-### common
-
-This role is applied to any nodes.
-Parameters below have to be specified.
-
-| Parameters | Explanation |
-|:-----------|:------------|
-| mapruser_password |  Encrypted password for mapr user. Install passlib and execute ```python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.using(rounds=5000).hash(getpass.getpass())"``` will give you the encrypted passwd  |
-| use_hosts | If you use /etc/hosts to resolve IP-Hostname of your cluster, you should write those relations in roles/common/files/hosts, and then, use "use_hosts" parameter and say "yes". |
-| mapr_version | mapr version to install. Ex. '5.2.0' |
-| mep_version | mep version to install. Ex. '2.0' |
-| oozie | oozie server host |
-
-### core_centos7
-
-This role installs mapr-core packages assuming the node is centos7.
-Parameters below is necessary.
-
-| Parameters | Explanation |
-|:-----------|:------------|
-| clush_nodes |   space separated nodes list to setup clustershell |
-
-
-
-
-Then, you should be able to execute ansible with extra vars. See the sample below.
-```
-$ ansible-playbook -i hosts site.yml --limit core_centos7 \
-   --extra-vars '{ "clush_nodes":"node0 node1 node2", \
-   "add_disk":"yes", "mapr_version":"5.2.0", "cldb_nodes":"node0,node1,node2", \
-   "zookeeper_nodes":"node0:5181,node1:5181,node2:5181", "cluster_name":"sample", \
-   "mapruser_password":"ENCRYPTED_PASSWORD"}'
-```
-
-
-### webserver
-
-This role adds the role of MCS to cluster node.
-
-### resourcemanager & nodemanager
-
-These roles adds the role of RM and NM to cluster nodes.
-
-### hivemeta
-
-hivemeta role installs mysqldb/mariadb, hivemeta and setup hivemeta.
-parameters below are necessary.
-
-| Parameters | Explanation |
-|:-----------|:------------|
-|hive_password | This role assumes hivemeta and hiveserver uses user "hive" for mysqldb/mariadb. This parameter is for the password of this user. |
-|zookeeper_nodes | zookeeper nodes for dynamic service discovery. csv style |
-| hivemeta | node to install hivemeta |
+| Parameters | Explanation | role | Mandatory |
+|:-----------|:------------|:------|:---------|
+| centos_version | 6 or 7 | common | Y |
+| use_hosts | If you use /etc/hosts to resolve IP-Hostname of your cluster, you should write those relations in roles/common/files/hosts, and then, use "use_hosts" parameter and say "yes". | common | N |
+| mapr_version | mapr version to install. Ex. '5.2.0' | common | Y |
+| mep_version | mep version to install. Ex. '2.0' | common, hue, spark-master, tez | Y |
+| clush_nodes |   space separated nodes list to setup clustershell | common | Y |
+| oozie | oozie server host | common | N |
+| hive_password | password for user "hive" for mysqldb/mariadb. | mysql | Y |
+| hue_password | password for user "hue" for mysqldb/mariadb.   | mysql | Y |
+| zookeeper_nodes | zookeeper nodes for dynamic service discovery. csv style | hive, hivemeta, config, hiveserver2, tez, posix-client-basic  | Y |
+| hivemeta | node to install hivemeta | hive, hivemeta, mysql, tez | Y |
 | db | "mysqldb" or "mariadb". default db of centos6 is mysqldb and centos7 is mariadb |
+| httpfs | httpfs_server host | hue | Y |
+| resource_manager | resource_manager host | hue | Y |
+| hiveserver | hiveserver host | hue | Y |
+| historyserver |   historyserver host | hue, config | Y |
+| impala_statestore | impala state store host | impala | Y |
+| impala_catalog | impala catalog host | impala | Y |
+| cldb_nodes | comma separated list of cldb nodes. Ex "node0,node1,node2" | config, posix-client-basic | Y |
+| cluster_name |   cluster name | config | Y |
+| add_disk |   When you run this role for the first time, disk should be added to the cluster, so "add_disk" should be "yes". When you run after that, disk should not be added anymore, so "add_disk" should be "no" | rerun_warden | Y |
 
-```
-$ ansible-playbook -i hosts site.yml --limit hivemeta \
-  --extra-vars '{ "clush_nodes":"node0 node1 node2", "add_disk":"no", \
-  "mapr_version":"5.2.0", "cldb_nodes":"node0,node1,node2", \
-  "zookeeper_nodes":"node0:5181,node1:5181,node2:5181", "cluster_name":"sample", \
-  "mapruser_password":"ENCRYPTED_PASSWORD", "hive_password":"hive", "hivemeta":"node2"}'
-```
+## Notes for roles
 
 ### hiveserver2
 
@@ -103,44 +71,16 @@ hiveserver2 role installs hiveserver2 and setup configuration.
 This role configures hiveserver to [enable impersonation](http://maprdocs.mapr.com/home/Hive/HiveUserImpersonation-Enable.html)
 Parameters below have to be specified.
 
-| Parameters | Explanation |
-|:-----------|:------------|
-|zookeeper_nodes | zookeeper nodes for dynamic service discovery. csv style |
-| hivemeta | node to install hivemeta |
-
-### hive
-
-hive role installs hive and setup configuration
-Parameters below have to be specified.
-
-| Parameters | Explanation |
-|:-----------|:------------|
-|zookeeper_nodes | zookeeper nodes for dynamic service discovery. csv style |
-| hivemeta | node to install hivemeta |
-
 ### hue
 
 assumption
 * configured to run httpfs, resourcemanager, hive
 * assuming hive 2.1
 
-
-| Parameters | Explanation |
-|:-----------|:------------|
-| mep_versin | 2.0 (hue 3.10.0) or 3.0 (hue 3.12.0) |
-| httpfs | httpfs_server host |
-| resource_manager | resource_manager host |
-| hiveserver | hiveserver host |
-| historyserver |   historyserver host |
-
 ### spark
 
 In case using Spark on Yarn, just use \[spark\] and \[spark-historyserver\].
 In case using Spark Standalone, use \[spark-master\], \[spark\] for spark slave, and \[spark-historyserver\].
-
-| Parameters | Explanation |
-|:-----------|:------------|
-| mep_versin | 2.0 (Spark 1.6.1) or 3.0 (Spark 2.1.0) |
 
 ### drill-yarn
 
@@ -166,48 +106,6 @@ Free Node Count: 3
 For more information, visit: http://10.10.75.117:8048/
 ```
 Access Drillbit Application Master above.
-
-### oozie
-
-install oozie and setup oozie server
-
-### impala
-
-| Parameters | Explanation |
-|:-----------|:------------|
-| impala_statestore | impala state store host |
-| impala_catalog | impala catalog host |
-
-### config
-
-This role executes configure.sh on each node.
-Parameters below have to be specified.
-
-| Parameters | Explanation |
-|:-----------|:------------|
-| cldb_nodes | comma separated list of cldb nodes. Ex "node0,node1,node2" |
-| zookeeper_nodes |   comma separated nodes list |
-| cluste_name |   cluster name |
-| resource_manager |   resource manager|
-| historyserver |   historyserver |
-
-### rerun_warden
-
-This role executes disksetup and restart warden on each node.
-Parameters below have to be specified.
-
-| Parameters | Explanation |
-|:-----------|:------------|
-| add_disk |   When you run this role for the first time, disk should be added to the cluster, so "add_disk" should be "yes". When you run after that, disk should not be added anymore, so "add_disk" should be "no" |
-
-Also, roles/core_centos7/files/disks have to be specified following your env
-
-```
-/dev/sdb
-/dev/sdc
-/dev/sdd
-```
-
 
 ## Examples
 

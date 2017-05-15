@@ -1,10 +1,10 @@
-[core_centos6]
-
-[core_centos7]
+[cluster_common]
 
 [zookeeper]
 
 [cldb]
+
+[fileserver]
 
 [webserver]
 

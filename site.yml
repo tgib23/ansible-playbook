@@ -4,13 +4,9 @@
   roles:
   - role: common
 
-- hosts: core_centos7
+- hosts: cluster_common
   roles:
-  - role: core_centos7
-
-- hosts: core_centos6
-  roles:
-  - role: core_centos6
+  - role: cluster_common
 
 - hosts: zookeeper
   roles:
@@ -174,12 +170,7 @@
   - role: rerun_zookeeper
   serial: 1
 
-- hosts: core_centos7
-  roles:
-  - role: rerun_warden
-  serial: 1
-
-- hosts: core_centos6
+- hosts: cluster_common
   roles:
   - role: rerun_warden
   serial: 1

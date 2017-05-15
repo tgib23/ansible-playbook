@@ -1,0 +1,4 @@
+epel_url : http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel//6/x86_64/epel-release-6-8.noarch.rpm
+epel_file : /tmp/epel-release-6-8.noarch.rpm
+java_version : 1.7.0
+download_url : http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel//6/x86_64/epel-release-6-8.noarch.rpm

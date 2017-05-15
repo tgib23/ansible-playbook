@@ -1,9 +1,7 @@
-[core_centos7]
+[cluster_common]
 cent71 
 cent72 
 cent73 
-
-[core_centos6]
 
 [zookeeper]
 cent71 
@@ -27,13 +25,10 @@ cent71
 [nodemanager]
 
 [hivemeta]
-cent72
 
 [hiveserver2]
-cent73
 
 [hive]
-cent73
 
 [spark]
 

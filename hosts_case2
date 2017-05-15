@@ -1,6 +1,4 @@
-[core_centos7]
-
-[core_centos6]
+[cluster_common]
 cent61
 cent62
 cent63

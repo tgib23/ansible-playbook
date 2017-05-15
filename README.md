@@ -42,7 +42,7 @@ It is possible to build multiple master roles and client with this ansible scrip
 
 | Parameters | Explanation | role | Mandatory |
 |:-----------|:------------|:------|:---------|
-| centos_version | 6 or 7 | common | Y |
+| os | cent6 or cent7 | common | Y |
 | use_hosts | If you use /etc/hosts to resolve IP-Hostname of your cluster, you should write those relations in roles/common/files/hosts, and then, use "use_hosts" parameter and say "yes". | common | N |
 | mapr_version | mapr version to install. Ex. '5.2.0' | common | Y |
 | mep_version | mep version to install. Ex. '2.0' | common, hue, spark-master, tez | Y |
@@ -118,7 +118,8 @@ Access Drillbit Application Master above.
 * use hosts_case1
 
 ```
-$ ansible-playbook -i hosts_case1 site.yml -u root -k --extra-vars '{
+$ ansible-playbook -i hosts_case1 cluster.yml -u root -k --extra-vars '{
+  "os":"cent6",
   "db":"mysqldb",
   "use_hosts":"yes",
   "clush_nodes":"cent61 cent62 cent63",
@@ -143,7 +144,8 @@ $ ansible-playbook -i hosts_case1 site.yml -u root -k --extra-vars '{
 * use hosts_case2
 
 ```
-ansible-playbook -i hosts_case2 site.yml -u root -k --extra-vars '{
+ansible-playbook -i hosts_case2 cluster.yml -u root -k --extra-vars '{
+  "os":"cent6",
  "db":"mysqldb",
  "use_hosts":"yes",
  "clush_nodes":"cent61 cent62 cent63",
@@ -167,7 +169,8 @@ ansible-playbook -i hosts_case2 site.yml -u root -k --extra-vars '{
 * nfsserver on node2, and loopbacknfs on node3
 
 ```
-$ ansible-playbook -i hosts_case3 site.yml -u root -k --extra-vars '{
+$ ansible-playbook -i hosts_case3 cluster.yml -u root -k --extra-vars '{
+ "os":"cent6",
  "db":"mysqldb",
  "use_hosts":"yes",
  "clush_nodes":"ecent61 ecent62 ecent63",
@@ -188,7 +191,8 @@ $ ansible-playbook -i hosts_case3 site.yml -u root -k --extra-vars '{
 ### case4
 
 ```
-$ ansible-playbook -i hosts_case4 site.yml --extra-vars '{
+$ ansible-playbook -i hosts_case4 cluster.yml --extra-vars '{
+ "os":"cent7",
  "db":"mariadb",
  "use_hosts":"yes",
  "clush_nodes":"ovirt0 ovirt1 ovirt2",
@@ -210,7 +214,8 @@ $ ansible-playbook -i hosts_case4 site.yml --extra-vars '{
 * cldb, zookeeper is installed as master node
 
 ```
-$ ansible-playbook -i hosts_case5 site.yml -u root -k --extra-vars '{
+$ ansible-playbook -i hosts_case5 cluster.yml -u root -k --extra-vars '{
+ "os":"cent7",
  "db":"mariadb",
  "use_hosts":"yes",
  "clush_nodes":"cent71 cent72 cent73",
@@ -229,7 +234,8 @@ $ ansible-playbook -i hosts_case5 site.yml -u root -k --extra-vars '{
 * Install hue and httpfs
 
 ```
-ansible-playbook -i hosts_case6 site.yml -u root -k --extra-vars '{
+ansible-playbook -i hosts_case6 cluster.yml -u root -k --extra-vars '{
+  "os":"cent7",
   "db":"mysqldb",
   "use_hosts":"no",
   "clush_nodes":"ecent61 ecent62 ecent63",
@@ -255,7 +261,8 @@ ansible-playbook -i hosts_case6 site.yml -u root -k --extra-vars '{
 * use spyglass
 
 ```
-ansible-playbook -i hosts_case7 site.yml -u root -k --extra-vars '{
+ansible-playbook -i hosts_case7 cluster.yml -u root -k --extra-vars '{
+  "os":"cent6",
   "db":"mysqldb",
   "use_hosts":"yes",
   "clush_nodes":"cent61 cent62 cent63 cent64 cent65",

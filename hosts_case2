@@ -1,48 +1,88 @@
 [cluster_common]
-cent61
-cent62
-cent63
+cent71 
+cent72 
+cent73 
 
 [zookeeper]
-cent61
+cent71 
 
 [cldb]
-cent62
+cent71
 
 [fileserver]
-cent61
-cent62
-cent63
+cent71 
+cent72 
+cent73 
 
 [webserver]
-cent61
+cent71 
 
 [nfsserver]
-cent61
+cent71 
 
 [resourcemanager]
-cent62
 
 [nodemanager]
-cent61
-cent62
-cent63
 
 [historyserver]
-cent63
 
 [hivemeta]
-cent63
 
 [hiveserver2]
-cent63
 
 [hive]
-cent61
+
+[pig]
+
+[hbase-master]
+
+[hbase-regionserver]
+
+[hbasethrift]
+
+[hbase-rest]
+
 
 [spark]
-cent61
+
+[spark-master]
 
 [spark-historyserver]
-cent63
 
+[impala]
+
+[impala-server]
+
+[impala-statestore]
+
+[impala-catalog]
+
+[httpfs]
+
+[drill]
+
+[sqoop]
+
+[sqoop2-server]
+
+[sqoop2-client]
+
+[posix-client-basic]
+
+[elasticsearch]
+
+[opentsdb]
+
+[kibana]
+
+[grafana]
+
+[spyglass-data-collector]
+
+[kafka-rest]
+
+[drill-yarn]
+
+[tez]
+
+[oozie]

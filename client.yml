@@ -8,3 +8,6 @@
   roles:
   - role: posix-client-basic
 
+- hosts: loopbacknfs
+  roles:
+  - role: loopbacknfs

@@ -46,6 +46,8 @@
 
 [impala-catalog]
 
+[httpfs]
+
 [drill]
 
 [sqoop]
@@ -53,8 +55,6 @@
 [sqoop2-server]
 
 [sqoop2-client]
-
-[loopbacknfs]
 
 [posix-client-basic]
 
@@ -75,3 +75,5 @@
 [drill-yarn]
 
 [tez]
+
+[oozie]

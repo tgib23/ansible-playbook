@@ -37,6 +37,7 @@
    - sysstat
    - wget
    - which
+   - zip
 
 - name: run ntp service
   service: name={{ item }} state=started enabled=yes

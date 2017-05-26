@@ -5,3 +5,15 @@
   with_items:
    - mapr-resourcemanager
 
+- name: copy yarn-site.xml
+  copy: src=yarn-site.xml dest=/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/yarn-site.xml owner=mapr group=mapr
+
+- name: set RESOURCEMANAGER HOST
+  replace:
+    dest='/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/yarn-site.xml'
+    regexp='RESOURCEMANAGER_HOST'
+    replace='{{ resource_manager }}'
+
+- name: copy jar file for dynamic allocation
+  copy: src=spark-2.1.0-mapr-1703-yarn-shuffle.jar dest=/opt/mapr/hadoop/hadoop-2.7.0/share/hadoop/yarn/lib/
+

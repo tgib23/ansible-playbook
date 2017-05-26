@@ -14,3 +14,6 @@
 - name: copy public key
   copy: src=maprid_rsa.pub dest=/home/mapr/.ssh/authorized_keys owner=mapr mode=0600
 
+- name: copy spark-defaults.conf
+  copy: src=spark-defaults.conf dest=/opt/mapr/spark/spark-2.1.0/conf/ owner=mapr
+

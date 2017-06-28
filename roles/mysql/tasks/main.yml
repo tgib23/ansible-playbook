@@ -20,26 +20,22 @@
   when: db == 'mariadb'
 
 - name: create hive user
-  mysql_user: name=hive password='{{ hive_password }}' priv=*.*:ALL state=present host={{item}}
+  mysql_user: name=hive password='hive' priv=*.*:ALL state=present host={{item}}
   with_items:
     - '%'
     - 'localhost'
     - '{{ hivemeta }}'
-  when: hive_password is defined
 
 - name: create hue user
-  mysql_user: name=hue password='{{ hue_password }}' priv=*.*:ALL state=present host={{item}}
+  mysql_user: name=hue password='hue' priv=*.*:ALL state=present host={{item}}
   with_items:
     - '%'
     - 'localhost'
     - '{{ hivemeta }}'
-  when: hue_password is defined
   
 - name: create hive database
   mysql_db: name=hive state=present
-  when: hive_password is defined
 
 - name: create hue database
   mysql_db: name=hue state=present
-  when: hue_password is defined
 

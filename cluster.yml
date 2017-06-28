@@ -36,6 +36,14 @@
   roles:
   - role: nodemanager
 
+- hosts: jobtracker
+  roles:
+  - role: jobtracker
+
+- hosts: tasktracker
+  roles:
+  - role: tasktracker
+
 - hosts: historyserver
   roles:
   - role: historyserver

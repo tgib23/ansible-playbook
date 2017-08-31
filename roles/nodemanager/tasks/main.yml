@@ -8,12 +8,6 @@
 - name: copy yarn-site.xml for yarn log aggregation
   copy: src=yarn-site.xml dest=/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/yarn-site.xml owner=mapr
 
-- name: set RESOURCEMANAGER HOST
-  replace:
-    dest='/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/yarn-site.xml'
-    regexp='RESOURCEMANAGER_HOST'
-    replace='{{ resource_manager }}'
-
 - name: add IMPERSONATION setting for yarn log aggregation
   lineinfile:
     dest: '/opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/yarn-env.sh'

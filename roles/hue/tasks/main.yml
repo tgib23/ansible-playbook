@@ -20,12 +20,6 @@
     regexp='WEBHDFS_HOST'
     replace='{{ httpfs }}'
 
-- name: set RESOURCEMANAGER HOST
-  replace:
-    dest='/opt/mapr/hue/hue-{{ hue_version }}/desktop/conf/hue.ini'
-    regexp='RESOURCEMANAGER_HOST'
-    replace='{{ resource_manager }}'
-
 - name: set HIVESERVER HOST
   replace:
     dest='/opt/mapr/hue/hue-{{ hue_version }}/desktop/conf/hue.ini'

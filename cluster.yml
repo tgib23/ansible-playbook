@@ -1,200 +1,247 @@
 ---
 
 - hosts: all
+  gather_facts: false
   roles:
   - role: common
 
 - hosts: cluster_common
+  gather_facts: false
   roles:
   - role: cluster_common
 
 - hosts: zookeeper
+  gather_facts: false
   roles:
   - role: zookeeper
 
 - hosts: cldb
+  gather_facts: false
   roles:
   - role: cldb
 
 - hosts: fileserver
+  gather_facts: false
   roles:
   - role: fileserver
 
 - hosts: webserver
+  gather_facts: false
   roles:
   - role: webserver
 
 - hosts: nfsserver
+  gather_facts: false
   roles:
   - role: nfsserver
  
 - hosts: resourcemanager
+  gather_facts: false
   roles:
   - role: resourcemanager
 
 - hosts: nodemanager
+  gather_facts: false
   roles:
   - role: nodemanager
 
 - hosts: jobtracker
+  gather_facts: false
   roles:
   - role: jobtracker
 
 - hosts: tasktracker
+  gather_facts: false
   roles:
   - role: tasktracker
 
 - hosts: historyserver
+  gather_facts: false
   roles:
   - role: historyserver
 
 - hosts: hivemeta
+  gather_facts: false
   roles:
   - role: mysql
   - role: hivemeta
 
 - hosts: hiveserver2
+  gather_facts: false
   roles:
   - role: hiveserver2
 
 - hosts: hive
+  gather_facts: false
   roles:
   - role: hive
 
 - hosts: pig
+  gather_facts: false
   roles:
   - role: pig
 
 - hosts: hbase-master
+  gather_facts: false
   roles:
   - role: hbase-master
 
 - hosts: hbase-regionserver
+  gather_facts: false
   roles:
   - role: hbase-regionserver
 
 - hosts: hbasethrift
+  gather_facts: false
   roles:
   - role: hbasethrift
 
 - hosts: hbase-rest
+  gather_facts: false
   roles:
   - role: hbase-rest
 
 - hosts: spark
+  gather_facts: false
   roles:
   - role: spark
 
 - hosts: spark-master
+  gather_facts: false
   roles:
   - role: spark
   - role: spark-master
 
 - hosts: spark-historyserver
+  gather_facts: false
   roles:
   - role: spark-historyserver
 
 - hosts: impala
+  gather_facts: false
   roles:
   - role: impala
 
 - hosts: impala-server
+  gather_facts: false
   roles:
   - role: hive
   - role: impala
   - role: impala-server
 
 - hosts: impala-statestore
+  gather_facts: false
   roles:
   - role: hive
   - role: impala
   - role: impala-statestore
 
 - hosts: impala-catalog
+  gather_facts: false
   roles:
   - role: hive
   - role: impala
   - role: impala-catalog
 
 - hosts: drill
+  gather_facts: false
   roles:
   - role: drill
 
 - hosts: sqoop
+  gather_facts: false
   roles:
   - role: sqoop
 
 - hosts: sqoop2-server
+  gather_facts: false
   roles:
   - role: sqoop2-server
 
 - hosts: sqoop2-client
+  gather_facts: false
   roles:
   - role: sqoop2-client
 
 - hosts: httpfs
+  gather_facts: false
   roles:
   - role: httpfs
 
 - hosts: hue
+  gather_facts: false
   roles:
   - role: hue
 
 - hosts: elasticsearch
+  gather_facts: false
   roles:
   - role: elasticsearch
 
 - hosts: opentsdb
+  gather_facts: false
   roles:
   - role: opentsdb
 
 - hosts: kibana
+  gather_facts: false
   roles:
   - role: kibana
 
 - hosts: grafana
+  gather_facts: false
   roles:
   - role: grafana
 
 - hosts: spyglass-data-collector
+  gather_facts: false
   roles:
   - role: fluentd
   - role: collectd
 
 - hosts: kafka-rest
+  gather_facts: false
   roles:
   - role: kafka-rest
 
 - hosts: oozie
+  gather_facts: false
   roles:
   - role: oozie
 
 - hosts: all
+  gather_facts: false
   roles:
   - role: config
 
 - hosts: zookeeper
+  gather_facts: false
   roles:
   - role: rerun_zookeeper
   serial: 1
 
 - hosts: cluster_common
+  gather_facts: false
   roles:
   - role: rerun_warden
   serial: 1
 
 - hosts: spark-historyserver
+  gather_facts: false
   roles:
   - role: create_apps_spark_dir
 
 - hosts: loopbacknfs
+  gather_facts: false
   roles:
   - role: loopbacknfs
 
 - hosts: drill-yarn
+  gather_facts: false
   roles:
   - role: drill-yarn
 
 - hosts: tez
+  gather_facts: false
   roles:
   - role: tez

@@ -99,11 +99,33 @@
     regexp='MAPR_VERSION'
     replace='{{ mapr_version }}'
 
+- name: use MEP or not
+  replace:
+    dest='/etc/yum.repos.d/maprtech.repo'
+    regexp='MEP_OR_NOT'
+    replace='ecosystem-5.x'
+  when: mep_version is not defined
+
+- name: use MEP or not
+  replace:
+    dest='/etc/yum.repos.d/maprtech.repo'
+    regexp='MEP_OR_NOT'
+    replace='MEP'
+  when: mep_version is defined
+
+- name: use MEP or not
+  replace:
+    dest='/etc/yum.repos.d/maprtech.repo'
+    regexp='MEP-MEP_VERSION'
+    replace=''
+  when: mep_version is not defined
+
 - name: set MEP version
   replace:
     dest='/etc/yum.repos.d/maprtech.repo'
     regexp='MEP_VERSION'
     replace='{{ mep_version }}'
+  when: mep_version is defined
 
 - name: set oozie node
   replace:

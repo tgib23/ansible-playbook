@@ -3,7 +3,12 @@
 - name: set hive_version from mep
   set_fact:
     hive_version : 2.1
-  when: mep_version == '3.0'
+  when: mep_version is defined and mep_version == '3.0'
+
+- name: set hive_version from mep
+  set_fact:
+    hive_version : 1.2
+  when: mep_version is not defined
 
 - name: packages
   yum: name={{ item }} state=installed

@@ -15,11 +15,6 @@
 <configuration>
   <!-- Site specific YARN configuration properties -->
   <property>
-    <name>yarn.resourcemanager.hostname</name>
-    <value>RESOURCEMANAGER_HOST</value>
-    <description>host is the hostname of the resourcemanager</description>
-  </property>
-  <property>
     <name>yarn.resourcemanager.recovery.enabled</name>
     <value>true</value>
     <description>RM Recovery Enabled</description>

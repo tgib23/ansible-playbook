@@ -46,8 +46,6 @@ It is possible to build multiple master roles and client with this ansible scrip
 | mapr_version | mapr version to install. Ex. '5.2.0' | common | Y |
 | mep_version | mep version to install. Ex. '2.0' | common, hue, spark-master, tez | Y |
 | clush_nodes |   space separated nodes list to setup clustershell | common | Y |
-| hive_password | password for user "hive" for mysqldb/mariadb. | mysql | Y |
-| hue_password | password for user "hue" for mysqldb/mariadb.   | mysql | Y |
 | zookeeper_nodes | zookeeper nodes for dynamic service discovery. csv style | hive, hivemeta, config, hiveserver2, tez, posix-client-basic  | Y |
 | hivemeta | node to install hivemeta | hive, hivemeta, mysql, tez | Y |
 | db | "mysqldb" or "mariadb". default db of centos6 is mysqldb and centos7 is mariadb |
@@ -76,6 +74,12 @@ Parameters below have to be specified.
 assumption
 * configured to run httpfs, resourcemanager, hive
 * assuming hive 2.1
+
+### mysql
+
+assumption
+* db named "hive" is created for hive. password is also "hive"
+* db named "hue" is created for hue. password is also "hue"
 
 ### spark
 
@@ -130,11 +134,9 @@ $ ansible-playbook -i hosts_case1 cluster.yml -u root -k --extra-vars '{
   "zookeeper_nodes":"cent61:5181,cent62:5181,cent63:5181",
   "cluster_name":"cent6",
   "hivemeta":"cent62", "oozie":"cent63",
-  "hive_password":"hive",
   "resource_manager":"cent63",
   "httpfs":"cent63",
   "hiveserver":"cent62",
-  "hue_password":"hue",
   "impala_statestore":"cent62",
   "impala_catalog":"cent64",
   "historyserver":"cent63",

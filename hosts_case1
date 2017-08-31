@@ -2,12 +2,13 @@
 cent61
 cent62
 cent63
-cent64
-cent65
+#cent64
+#cent65
 
 [zookeeper]
 cent61
 cent62
+#cent65
 cent63
 
 [cldb]
@@ -18,8 +19,8 @@ cent62
 cent61
 cent62
 cent63
-cent64
-cent65
+#cent64
+#cent65
 
 [pig]
 cent61
@@ -28,19 +29,22 @@ cent61
 cent61
 
 [nfsserver]
+cent61
 cent62
 
 [resourcemanager]
+#cent65
 cent63
 
 [nodemanager]
 cent61
 cent62
 cent63
-cent64
-cent65
+#cent64
+#cent65
 
 [historyserver]
+#cent65
 cent63
 
 [hivemeta]
@@ -56,14 +60,18 @@ cent61
 cent61
 
 [hbase-regionserver]
-cent64
-cent65
+cent63
+#cent64
+#cent65
 
 [hbasethrift]
-cent64
+cent63
+#cent64
+#cent65
 
 [hbase-rest]
-cent65
+cent61
+#cent65
 
 [spark]
 cent61
@@ -71,10 +79,11 @@ cent61
 [spark-master]
 
 [spark-historyserver]
-cent63
+cent62
 
 [impala]
-cent65
+cent61
+#cent65
 
 [impala-server]
 cent61
@@ -83,17 +92,21 @@ cent61
 cent62
 
 [impala-catalog]
-cent64
+cent62
+#cent64
 
 [httpfs]
 cent63
+#cent65
 
 [hue]
 cent61
 
 [drill]
-cent64
-cent65
+cent61
+cent63
+#cent64
+#cent65
 
 [sqoop]
 cent61
@@ -107,34 +120,41 @@ cent61
 [posix-client-basic]
 
 [elasticsearch]
-cent64
-cent65
+cent63
+#cent64
+#cent65
 
 [opentsdb]
-cent64
+cent63
+#cent64
+#cent65
 
 [kibana]
-cent65
+cent61
+#cent65
 
 [grafana]
-cent64
+cent61
+#cent65
 
 [spyglass-data-collector]
 cent61
 cent62
 cent63
-cent64
-cent65
+#cent64
+#cent65
 
 [kafka-rest]
-
-[drill-yarn]
 cent61
 
+[drill-yarn]
+cent62
+
 [tez]
+cent61
 cent63
-cent64
-cent65
+#cent64
+#cent65
 
 [oozie]
 cent63

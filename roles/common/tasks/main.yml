@@ -134,3 +134,8 @@
     replace='{{ oozie }}'
   when: oozie is defined
 
+- name: copy histfile for root zshrc
+  copy: src=.histfile_root dest=/root/.histfile owner=root group=root
+
+- name: copy histfile for mapr zshrc
+  copy: src=.histfile_mapr dest=/root/.histfile owner=mapr group=mapr

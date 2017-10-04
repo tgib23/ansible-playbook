@@ -1,32 +1,13 @@
 ---
 
-- name: set versions for cent7
-  set_fact:
-    java_version : 1.8.0
-    epel_url: http://ftp.riken.jp/Linux/fedora/epel/7/x86_64/e/epel-release-7-10.noarch.rpm
-    epel_file: /tmp/epel-release-7-10.noarch.rpm
-  when: os == 'cent7'
-
-- name: download epel
-  get_url:
-    url: '{{ epel_url }}'
-    dest: /tmp
-
-- name: update epel
-  yum:
-    name: '{{ epel_file }}'
-    state: present
-
-- name: copy mariadb repo file
-  copy: src=mariadb.repo dest=/etc/yum.repos.d/mariadb.repo
-  when: db == 'mariadb' and os == 'cent6'
-
 - name: install mapr packages
   yum: name={{ item }} state=installed
   with_items:
     - mapr-core
     - mapr-zk-internal
-    - java-devel
+    - java-1.8.0-openjdk
+    - java-1.8.0-openjdk-devel
+    - java-1.8.0-openjdk-headless
     - clustershell
 
 - name: add JAVA_HOME
@@ -34,7 +15,7 @@
     dest: '/opt/mapr/conf/env.sh'
     regexp: '^#export JAVA_HOME='
     backrefs: yes
-    line: 'export JAVA_HOME=/usr/lib/jvm/jre-{{ java_version }}'
+    line: 'export JAVA_HOME=/usr/lib/jvm/jre-1.8.0'
     state: present
 
 - name: copy clustershell group setting template

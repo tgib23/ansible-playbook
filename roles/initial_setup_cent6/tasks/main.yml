@@ -1,0 +1,16 @@
+---
+
+- name: download epel
+  get_url:
+    url: http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel//6/x86_64/epel-release-6-8.noarch.rpm
+    dest: /tmp
+
+- name: update epel
+  yum:
+    name: /tmp/epel-release-6-8.noarch.rpm
+    state: present
+
+- name: copy mariadb repo file
+  copy: src=mariadb.repo dest=/etc/yum.repos.d/mariadb.repo
+  when: db == 'mariadb'
+

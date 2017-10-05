@@ -1,5 +1,15 @@
 ---
 
+- hosts: initial_setup_cent6
+  gather_facts: false
+  roles:
+  - role: initial_setup_cent6
+
+- hosts: initial_setup_cent7
+  gather_facts: false
+  roles:
+  - role: initial_setup_cent7
+
 - hosts: all
   gather_facts: false
   roles:
